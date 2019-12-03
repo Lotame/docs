@@ -1,7 +1,5 @@
 # Lotame Lightning Tag
 
-[Click here for the formatted docs](https://lotame.github.io/docs/)
-
 !> Please note that the Lotame Lightning Tag is currently in closed beta release. If your company would like to join the beta, please reach out to support@lotame.com.
 
 ## Overview
