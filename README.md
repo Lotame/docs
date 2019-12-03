@@ -1,8 +1,16 @@
 # Lotame Lightning Tag
 
-!> Charlie to fill in
+[Click here for the formatted docs](https://lotame.github.io/docs/)
 
-## Implementation Guides
+## Overview
+
+!> Coming Soon.
+
+## Initial Setup
+
+Before you enable the Lotame Lightning Tag on your site, you need to perform some steps in your Lotame platform. These steps can be seen in our [Pre-Implementation Steps guide](lightning-tag/implementation-setup-tasks.md).
+
+## Technical Implementation Guides
 
 ### Quickstart with Custom Ad Server
 
