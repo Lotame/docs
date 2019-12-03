@@ -4,3 +4,6 @@
   * [Google Ad Manager Implmentation](lightning-tag/implementation-google-ad-manager.md)
   * [Reference Guide](lightning-tag/detailed-reference.md)
   * [FAQ](lightning-tag/faq.md)
+  * [Data Collection](lightning-tag/data-collection.md)
+    * [Custom Data Collection](lightning-tag/data-collection-custom.md)
+    * [Post-Page Load Data Collection](lightning-tag/data-collection-post-page-load.md)
