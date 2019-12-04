@@ -1,6 +1,6 @@
 # Detailed Reference Guide
 
-?> Coming Soon
+!> Under Construction.
 
 ## Platform Setup
 
