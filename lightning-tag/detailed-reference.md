@@ -45,15 +45,15 @@ audienceLocalStorage | Determines whether to write audiences to the browser's `l
 
 The `data` object is used in to pass first party-data to the Lotame DMP for use in targeting or other features of the Lotame platform. The object can be passed at setup time in the tag input function. It can also be passed post-page load in the `collect({data})` method that is described further down this page.
 
-The `data` object's parameters are fully described in its own page called [Lightning Tag Data Collection](lightning-tag/data-collection.md).
+The `data` object's parameters are fully described in [Lightning Tag Data Collection](lightning-tag/data-collection.md).
 
 ## Retrieving Audiences
 
-The Lotame Lightning Tag allows you to retrieve audiences for the customer on your site. There is a few ways to do this and they are described below.
+The Lotame Lightning Tag allows you to retrieve audiences for the customer on your site. There are a few ways to do this and they are described below.
 
 ### Callback
 
-As noted above in the `config` object created at script setup, there is a callback method named `onProfileReady` that can be set to be called at the completion of the targeting. This work happens asynchronously so the callback is fired at the point the targeting work is completed.
+As noted above in the `config` object created at script setup, there is a callback method named `onProfileReady` that can be set to be called at the completion of the targeting. This work happens asynchronously so the callback is fired when the targeting work is completed.
 
 When fired, the callback is passed a `profile` object that has the following functionality.
 
@@ -65,7 +65,7 @@ Method Name | Return Type | Parameters | Description
 
 ### Local Storage
 
-As noted above in the `config` object created at script setup, there is a callback method named `audienceLocalStorage` parameter. If passed, then when targeting is completed, the audiences will be written out to the browser's localStorage.
+As noted above in the `config` object created at script setup, there is parameter named `audienceLocalStorage`. If passed, when targeting is completed, the audiences will be written out to the browser's localStorage.
 
 Value | Result
 :---: | ------
