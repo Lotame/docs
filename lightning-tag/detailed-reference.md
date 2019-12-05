@@ -4,11 +4,11 @@
 
 ## Platform Setup
 
-Before implementing the Lotame Lightning Tag on your site, there is setup needed to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
+Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
 
 ## Javascript Setup
 
-Setup of the Lotame Lightning Tag javascript on your website is minimal in its most basic setup as shown below:
+Setup of the Lotame Lightning Tag javascript on your website involves an input object that gets passed to an initialization function that prepares a window namespace on your page for the javascript tag itself. The basic setup looks like the below:
 
 ```javascript
 <script>
@@ -33,7 +33,7 @@ The details of the input `data` and `config` options are below.
 
 ### Config object
 
-The `config` object in the Lotame Lightning Tag input has the below possible parameters:
+The `config` object in the Lotame Lightning Tag input has the following possible parameters:
 
 Parameter Name | Description | Type | Required? | Default
 -------------- | ----------- | ---- | :-------: | :-----:
@@ -60,8 +60,8 @@ When fired, the callback is passed a `profile` object that has the following fun
 Method Name | Return Type | Parameters | Description
 ----------- | ----------- | ---------- | -----------
 `getProfileId()` | String | n/a | The id of the profile associated with the browser
-`getAudienceString( [delimiter=','], [limit])` | String | 1. `delimiter` - optional, defaults to comma. <br/> 2. `limit` - optional, defaults to no limit | Delimited string of targeting codes or audience ids, based on your established tag settings. The default, i.e. no arguments, is comma delimited with no limit. Example: `"aud1,aud2"` or `"1,2"`
-`getAudiences([limit])` | Array | `limit` - optional, defaults to no limit | Array of either targeting codes as strings or audience ids as integers, based on your established tag settings. Example: `["aud1","aud2"]` or `[123,789]`
+`getAudienceString( [delimiter=','], [limit])` | String | 1. `delimiter` - optional, string, defaults to comma. <br/> 2. `limit` - optional, integer, defaults to no limit | Delimited string of targeting codes or audience ids, based on your established tag settings. The default, i.e. no arguments, is comma delimited with no limit. Example: `"aud1,aud2"` or `"1,2"`
+`getAudiences([limit])` | Array | `limit` - optional, integer, defaults to no limit | Array of either targeting codes as strings or audience ids as integers, based on your established tag settings. Example: `["aud1","aud2"]` or `[123,789]`
 
 ### Local Storage
 
