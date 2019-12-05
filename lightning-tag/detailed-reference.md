@@ -8,7 +8,7 @@ Before implementing the Lotame Lightning Tag on your site, there is setup needed
 
 ## Javascript Setup
 
-Setup of the Lotame Lightning Tag javascript on your website involves Passing a input object to a function which loads the window namespace on your page which is where the javascript tag loads itself into an executes. The basic setup looks like the below:
+Setup of the Lotame Lightning Tag javascript on your website is minimal in its most basic setup as shown below:
 
 ```javascript
 <script>
@@ -83,14 +83,29 @@ Audiences are written out as a string of comma-delimited targeting codes or audi
 
 ### Collect()
 
-?> TBD, need to describe the "why" on this to describe it.
+The `collect()` method is available to pass data to your Lotame DMP after the page load is complete and the initial calls to Lotame DMP are finished. An example use-case is tracking user interaction with a video player on your site.
 
 ```javascript
-window.lotame_<lotameClientId>.collectData({data});
+window.lotame_<lotameClientId>.collect({data});
 ```
 
-The `data` object parameters are described in full on the [Data Collection page](lightning-tag/data-collection.md).
+The `data` object parameters are described in the [Data Collection page](lightning-tag/data-collection.md).
+
+Calls to this method are queued up. Every 1 second (and also at the `page.unload()` event) the Lightning Tag flushes the queue and sends the batch of data objects to the DMP. This allows your website to make calls to this method and not need to wait on a response.
 
 ### Page()
 
-?> TBD, need more clarity on exactly what this does and when it should be called.
+The `page()` method is another initilization of targeting in your Lotame DMP. This allows for you to re-run your targeting call without reloading of the Lotame Lightning Tag script. A use-case is a single page site where as a user scrolls, new articles pop up. This method allows your site to pass in new `{data}` elements that describe this new article the user is now viewing and then retrieve updated audiences based on that new information.
+
+```javascript
+window.lotame_<lotameClientId>.page({data});
+```
+
+?> Please note that `{data}` is an optional parameter to the `page()` method.
+
+The following tasks occur when `page()` is called:
+
+1. The data queue described above in the `collect()` method will flush including any new data that is passed on this `page()` call.
+1. Your Optimus rules will re-execute pulling in new values based on the page contents.
+1. A new page view will be registered in your Lotame DMP.
+1. Targeting will re-execute and audiences will be returned on either the callback method or localStorage (or both) depending how you configured audience extraction on your site.
