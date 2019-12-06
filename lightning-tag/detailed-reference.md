@@ -181,5 +181,5 @@ function consentCb(returnData) {
   window.lotame_<lotameClientId>.page(dataCollection);
 }
 
-window.lotame_<lotameClientId>.setConsent(consentCb, <lotameClientId>);
+window.lotame_<lotameClientId>.getConsent(consentCb, <lotameClientId>);
 ```
