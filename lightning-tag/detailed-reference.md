@@ -88,6 +88,8 @@ window.lotame_<lotameClientId>.getAudiences();
 
 Audiences are written out as a string of comma-delimited targeting codes or audience IDs, based on your established tag settings. Example: `"aud1,aud2"` or `"123,789"`
 
+?> The `audienceLocalStorage` parameter must be set in the Lotame Lightning Tag `config` object. If it is not, the response will be an empty string and an error message to `console` log.
+
 ### collect()
 
 The `collect()` method is available to pass data to your Lotame DMP after the page load is complete, and the initial calls to Lotame DMP are finished. An example use-case is tracking events such as user interaction with a video player on your site.
