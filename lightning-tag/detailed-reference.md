@@ -81,7 +81,7 @@ onTagReady: function(namespace) {
 
 #### Auto Run Flag
 
-The `autoRun` boolean is defaulted `true` and runs the Lotame data collection and targeting retrieval is run immediately after the script is loaded. By default it is `true` so those functions run automatically after the script is loaded. If set to `false` control is left to the client's website to fire data collection and targeting using the `collect()` and `page()` methods described lower on this document.
+The `autoRun` boolean is defaulted `true` and runs the Lotame data collection and targeting retrieval immediately after the script is loaded. If set to `false` control is left to the client's website to fire data collection and targeting using the `collect()` and `page()` methods described later on this document.
 
 A use-case for setting this to `false` is if you want to get the customer's consent before enabling the data collection and targeting to run.
 
@@ -93,11 +93,11 @@ The `data` object's parameters are fully described in [Lightning Tag Data Collec
 
 ## Lightning Tag Methods
 
-!> To ensure any of the below methods are available, ensure the `onTagReady` callback has returned else the below methods are not available yet.
+!> To ensure any of the below methods are available, ensure the `onTagReady` callback has returned
 
 ### collect()
 
-The `collect()` method is available to pass data to your Lotame DMP the Lotame javascript is loaded. An example use-case is tracking events such as user interaction with a video player on your site.
+The `collect()` method is available to pass data to your Lotame DMP after the Lotame javascript is loaded. An example use-case is tracking events such as user interaction with a video player on your site.
 
 ```javascript
 window.lotame_<lotameClientId>.collect({data});
@@ -138,7 +138,7 @@ Audiences are written out as a string of comma-delimited targeting codes or audi
 
 ### setConsent()
 
-The Lotame Ligntning Tag provides a method `setConsent` method to submit consent signals to the Lotame Consent API for enforcement within the Lotame DMP. Once you've collected the appropriate consent from your customer within your privacy user experience, submit the appropriate signals as follows:
+The Lotame Ligntning Tag provides a method `setConsent` to submit consent signals to the Lotame Consent API for enforcement within the Lotame DMP. Once you've collected the appropriate consent from your customer within your privacy user experience, submit the appropriate signals as follows:
 
 ```javascript
 function consentCb(returnData) {
