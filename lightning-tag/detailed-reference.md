@@ -1,7 +1,5 @@
 # Detailed Reference Guide
 
-!> Under Construction.
-
 ## Platform Setup
 
 Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
