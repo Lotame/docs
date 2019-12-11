@@ -20,7 +20,6 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">  
 
   <script>
-  
     var targetAndDisplayAds = function(commaSeparatedAudienceString) {
       console.log('Replace with implementation that calls googletag or other ad-rendering capabilities');
     }
