@@ -68,4 +68,4 @@ Lotame recommends loading this directly on your page in the `<head>` section to 
 <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
 ```
 
-To see the full feature set that the Lotame Lightning Tag offers, including passing in your own data fields for rule matching purposes, visit the Lightning Tag Field Reference Guide. Also check out the Lightning Tag FAQ for answers to common questions. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
+To see the full feature set that the Lotame Lightning Tag offers, including passing in your own data fields for rule matching purposes, visit the [Lightning Tag Field Reference Guide](lightning-tag/detailed-reference.md). Also check out the [Lightning Tag FAQ](lightning-tag/faq.md) for answers to common questions. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
