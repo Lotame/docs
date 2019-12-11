@@ -4,7 +4,17 @@
 
 ## Overview
 
-?> Coming Soon.
+The Lotame Lightning Tag is a JavaScript tag and API that facilitates all DMP operations on your webpages. This all-in-one solution performs both data collection and audience extraction, along with other important functions described below.
+
+Lightning Tag executes in two stages, the 1st impression stage and the page collection stage.
+
+The 1st impression stage executes immediately upon `<script>` rendering by the browser and can perform the following:
+
+- **Data Collection**: Collect data explicitly passed the tag input, or available via collection rules that utilize the page URL or any page elements present at the time.
+- **Profile Extraction**: Optionally, provide profile metadata, such as the id and matching audiences.
+- **Pixel Firing**: Optionally, create an iframe to contain and render any relevant id syncing pixels and export beacons.
+
+The page collection stage executes following the page onload event to evaluate all custom data collection rules that inspect page content.
 
 ## Initial Setup
 
@@ -23,10 +33,6 @@ For Lotame customers that use Google Ad Manager (formerly DoubleClick for Publis
 ## Data Collection
 
 To pass data to your Lotame DMP on page-load, review the Lotame [Lightning Tag Data Collection Guide](lightning-tag/data-collection.md).
-
-### Pass Data to a Custom Event
-
-?> Not sure what this is yet, but Charlie wants it.
 
 ### Pass Data Post-Page Load
 
