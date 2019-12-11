@@ -1,6 +1,6 @@
 # FAQs
 
-## Why don't I see audiences being sent to my ad-service solution?
+## Why don't I see audiences being sent to my ad-serving solution?
 
 Here are some things to check. These will all involve opening up developer tools in a browser and looking at the network tab.
 
