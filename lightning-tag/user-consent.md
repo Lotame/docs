@@ -1,8 +1,8 @@
 # User Consent Guide
 
-## Common User Consent Use-Case
+## Passing Consent Signals Into Lotame
 
-For Lotame clients that want to provide their users the ability to opt-out of tracking, the Lotame Lightning Tag provides the ability pass the user's consent options. These consent options will be used during Lotame processing against that user's profile.
+For clients that utilize Lotame's Consent Management Product, consent signals can be passed directly into Lightning Tag. Use this feature to inform Lotame of each user's consent preference and how they should be handled within the DMP.
 
 ```javascript
 // Validate Lotame Lightning Tag script is ready
@@ -27,7 +27,7 @@ The full details of the `returnData` object passed to the callback can be found 
 
 ## Strict User Consent Use-Case
 
-Certain Lotame clients do not want Lotame Lightning Tag to run until the customer has gone through a consent management flow. The Lotame Platform provides the ability to enable a strict consent flag at the account level that prevents data from being collected until Lotame is informed of user consent agreement. 
+Certain Lotame clients do not want Lotame Lightning Tag to run until the customer has gone through a consent management flow. The Lotame Platform provides the ability to enable a strict consent flag at the account level that prevents data from being collected until Lotame is informed of user consent agreement.
 
 When this flag is enabled, the Lightning Tag has specific configuration to successfully enable collection and targeting on your webpage after your consent flow is complete. The `autoRun: false` flag is set on the Lightning Tag config to prevent the tag from running automatically. Once your consent flow is completed, you set calls the Lightning Tag `setConsent` method to enable the data collection and then the `page()` method to collect data and receive audiences (assuming the customer approved in the flow).
 
