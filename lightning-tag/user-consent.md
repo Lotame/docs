@@ -41,86 +41,86 @@ This below example javascript code shows the following happy-path flow:
 1. Webpage calls Ad-Serving solution passing Lotame audiences.
 
 ```javascript
-  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">
-  <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">  
+<link rel="dns-prefetch" href="https://tags.crwdcntrl.net">
+<link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">  
 
-  <script>
+<script>
 
-    var targetAndDisplayAds = function(commaSeparatedAudienceString) {
-      console.log('Replace with implementation that calls googletag or other ad-rendering capabilities');
+  var targetAndDisplayAds = function(commaSeparatedAudienceString) {
+    console.log('Replace with implementation that calls googletag or other ad-rendering capabilities');
+  }
+
+  // Callback when targeting audience is ready
+  var audienceReadyCallback = function(profile) {
+
+    // Get audience string & Call your company's Ad Display function
+    var lotameAudiences = profile.getAudienceString(',') || '';
+    targetAndDisplayAds(lotameAudiences);
+  };
+
+  // Lotame Config
+  var lotameTagInput = {
+    data: {},
+    config: {
+      clientId: <lotameClientId>,
+      onProfileReady: audienceReadyCallback,
+      autoRun: false
     }
-  
-    // Callback when targeting audience is ready
-    var audienceReadyCallback = function(profile) {
+  };
 
-      // Get audience string & Call your company's Ad Display function
-      var lotameAudiences = profile.getAudienceString(',') || '';
-      targetAndDisplayAds(lotameAudiences);
-    };
-  
-    // Lotame Config
-    var lotameTagInput = {
-      data: {},
-      config: {
-        clientId: <lotameClientId>,
-        onProfileReady: audienceReadyCallback,
-        autoRun: false
-      }
-    };
+  // Lotame initialization
+  ! function(input) {
+    input = input || {};
+    var config = input.config || {};
+    var namespace = window['lotame_' + config.clientId] = {};
+    namespace.config = config;
+    namespace.data = input.data || {};
+  } (lotameTagInput);
 
-    // Lotame initialization
-    ! function(input) {
-      input = input || {};
-      var config = input.config || {};
-      var namespace = window['lotame_' + config.clientId] = {};
-      namespace.config = config;
-      namespace.data = input.data || {};
-    } (lotameTagInput);
-  
-  </script>
-  
-  <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
+</script>
 
-  <script>
+<script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
 
-    // Validate Lotame Lightning Tag script is ready
-    if (window.lotame_<lotameClientId>.onTagReady() ) {
+<script>
 
-      // Callback that runs when setConsent() completes
-      function consentCb(returnData) {
-        var dataCollection = {
-          behaviorIds: [CSV_OF_BEHAVIOR_IDS],
-          behaviors: {
-              int: ['behaviorName', 'behaviorName2'],
-              act: ['behaviorName']
-          },
-          ruleBuilder: {
-              key1: ['value 1a', 'value 1b']
-          },
-          thirdParty: {
-              namespace: 'NAMESPACE',
-              value: 'TPID_VALUE'
-          },
-          sha256email: 'SHA256_VALUE'
-        };
+  // Validate Lotame Lightning Tag script is ready
+  if (window.lotame_<lotameClientId>.onTagReady() ) {
 
-        // Call the page() method to fire Data Collection
-        // When complete, this will fire the audienceReadyCallback defined in the
-        //   Lotame config above to pass audiences to your site's ad-serving solution
-        window.lotame_<lotameClientId>.page(dataCollection);
+    // Callback that runs when setConsent() completes
+    function consentCb(returnData) {
+      var dataCollection = {
+        behaviorIds: [CSV_OF_BEHAVIOR_IDS],
+        behaviors: {
+            int: ['behaviorName', 'behaviorName2'],
+            act: ['behaviorName']
+        },
+        ruleBuilder: {
+            key1: ['value 1a', 'value 1b']
+        },
+        thirdParty: {
+            namespace: 'NAMESPACE',
+            value: 'TPID_VALUE'
+        },
+        sha256email: 'SHA256_VALUE'
       };
 
-      // Set these as true or false as per the signals from your User Consent process
-      var customerConsents = {
-        analytics: true,
-        crossdevice: true,
-        datasharing: true,
-        targeting: true
-      };
-      window.lotame_<lotameClientId>.setConsent(consentCb, <lotameClientId>, customerConsents);
+      // Call the page() method to fire Data Collection
+      // When complete, this will fire the audienceReadyCallback defined in the
+      //   Lotame config above to pass audiences to your site's ad-serving solution
+      window.lotame_<lotameClientId>.page(dataCollection);
+    };
 
-    }
-  </script>
+    // Set these as true or false as per the signals from your User Consent process
+    var customerConsents = {
+      analytics: true,
+      crossdevice: true,
+      datasharing: true,
+      targeting: true
+    };
+    window.lotame_<lotameClientId>.setConsent(consentCb, <lotameClientId>, customerConsents);
+
+  }
+</script>
 ```
 
 To see the full feature set that the Lotame Lightning Tag offers, visit the [Lightning Tag Field Reference Guide](lightning-tag/detailed-reference.md). Also check out the [Lightning Tag FAQ](lightning-tag/faq.md) for answers to common questions. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
