@@ -53,7 +53,7 @@ sha256email	| The current users email address, first lower-cased, trimmed of whi
 
 ### Page Interactions
 
-There are times when a Lotame Client wants to pass data to Lotame based on interactions with a page that you customer makes after the page load. For example, interactions with a video player. To do this, you can use the Lightning Tag `collect()` method to send that data even after the config data collection happens as described above.
+You can use the Lightning Tag `collect()` method to send data from custom events that cannot be handled through standard Lotame data collection rules at any point after the Lightning Tag has loaded.
 
 This option takes the same `{data}` object as describe at the top of the page.
 
@@ -77,7 +77,7 @@ window.lotame_<lotameClientId>.collect({
 
 ### New Page Load Events
 
-Lightning Tag provides a `page()` method that you can pass data on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a pageView in Lotame and initiates targeting again which will update audiences in your audience Callback or LocalStorage. An example use-case would be an infinite scrolling site that loads new "articles" once the current article is scrolled to the bottom. `page()` allows your site to note the new article pageView and pass data in that corresponds to the new article so targeting can be rerun based on this new information.
+Lightning Tag provides a `page()` method that you can pass data on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a pageView in Lotame and initiates targeting again which will update audiences in your audience Callback or LocalStorage. An example use-case would be an single page app where the URL remains the same, no page load event occurs, but the main content of the window is replaced. `page()` allows your site to note the new pageView and pass data in that corresponds to the new page so targeting can be rerun based on this new information.
 
 ```javascript
 window.lotame_<lotameClientId>.page({
