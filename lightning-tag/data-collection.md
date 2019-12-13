@@ -2,7 +2,7 @@
 
 ## Passing Data on Page Load
 
-Lightning Tag will automatically execute any data collection rules that you have configured in cooperation with your Lotame account representative. In addition, you can explicitly pass in data attributed to the user by supplying it in the data object of your tag input.
+Lightning Tag will automatically execute any data collection rules that you have configured in cooperation with your Lotame account representative. In addition, you can explicitly pass in data attributed to the user by supplying it in the `data` object of your tag input.
 
 ```javascript
 // Lotame Config
@@ -10,15 +10,15 @@ var lotameTagInput = {
   data: {
     behaviorIds: [CSV_OF_BEHAVIOR_IDS],
     behaviors: {
-    int: ['behaviorName', 'behaviorName2'],
-    act: ['behaviorName']
+      int: ['behaviorName', 'behaviorName2'],
+      act: ['behaviorName']
     },
     ruleBuilder: {
-    key1: ['value 1a', 'value 1b']
+      key1: ['value 1a', 'value 1b']
     },
     thirdParty: {
-    namespace: 'NAMESPACE',
-    value: 'TPID_VALUE'
+      namespace: 'NAMESPACE',
+      value: 'TPID_VALUE'
     },
     sha256email: 'SHA256_VALUE'
   },
@@ -31,11 +31,11 @@ var lotameTagInput = {
 
 // Lotame initialization
 ! function(input) {
-    input = input || {};
-    var config = input.config || {};
-    var namespace = window['lotame_' + config.clientId] = {};
-    namespace.config = config;
-    namespace.data = input.data || {};
+  input = input || {};
+  var config = input.config || {};
+  var namespace = window['lotame_' + config.clientId] = {};
+  namespace.config = config;
+  namespace.data = input.data || {};
 } (lotameTagInput);
 ```
 
@@ -61,15 +61,15 @@ This option takes the same `{data}` object as describe at the top of the page.
 window.lotame_<lotameClientId>.collect({
   behaviorIds: [CSV_OF_BEHAVIOR_IDS],
   behaviors: {
-  int: ['behaviorName', 'behaviorName2'],
-  act: ['behaviorName']
+    int: ['behaviorName', 'behaviorName2'],
+    act: ['behaviorName']
   },
   ruleBuilder: {
-  key1: ['value 1a', 'value 1b']
+    key1: ['value 1a', 'value 1b']
   },
   thirdParty: {
-  namespace: 'NAMESPACE',
-  value: 'TPID_VALUE'
+    namespace: 'NAMESPACE',
+    value: 'TPID_VALUE'
   },
   sha256email: 'SHA256_VALUE'
 });
@@ -77,21 +77,23 @@ window.lotame_<lotameClientId>.collect({
 
 ### New Page Load Events
 
-Lightning Tag provides a `page()` method that you can pass data on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a pageView in Lotame and initiates targeting again which will update audiences in your audience Callback or LocalStorage. An example use-case would be an single page app where the URL remains the same, no page load event occurs, but the main content of the window is replaced. `page()` allows your site to note the new pageView and pass data in that corresponds to the new page so targeting can be rerun based on this new information.
+Lightning Tag provides a `page()` method that you can pass data on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a pageView in Lotame and initiates targeting again which will update audiences in your audience Callback or LocalStorage. 
+
+An example use-case is a single page app where the URL remains the same, no new page load events occur, but the main content of the window is replaced. `page()` allows your site to note the new pageView and pass data in that corresponds to the new page so targeting can be rerun based on this new information.
 
 ```javascript
 window.lotame_<lotameClientId>.page({
   behaviorIds: [CSV_OF_BEHAVIOR_IDS],
   behaviors: {
-  int: ['behaviorName', 'behaviorName2'],
-  act: ['behaviorName']
+    int: ['behaviorName', 'behaviorName2'],
+    act: ['behaviorName']
   },
   ruleBuilder: {
-  key1: ['value 1a', 'value 1b']
+    key1: ['value 1a', 'value 1b']
   },
   thirdParty: {
-  namespace: 'NAMESPACE',
-  value: 'TPID_VALUE'
+    namespace: 'NAMESPACE',
+    value: 'TPID_VALUE'
   },
   sha256email: 'SHA256_VALUE'
 });
