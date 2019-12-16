@@ -141,12 +141,8 @@ Audiences are written out as a string of comma-delimited targeting codes or audi
 The Lotame Ligntning Tag provides a method `setConsent` to submit consent signals to the Lotame Consent API for enforcement within the Lotame DMP. Once you've collected the appropriate consent from your customer within your privacy user experience, submit the appropriate signals as follows:
 
 ```javascript
-function consentCb(returnData) {
-  // Now that consent is loaded in your Lotame DMP, run data collection and targeting 
-  var dataCollection = {
-    // data fields here
-  };
-  window.lotame_<lotameClientId>.page(dataCollection);
+function setConsentCb(returnData) {
+  console.log('LT.JS: Placeholder for setConsentCb logic');
 }
 
 var customerConsents = {
@@ -156,7 +152,7 @@ var customerConsents = {
   targeting: true
 };
 
-window.lotame_<lotameClientId>.setConsent(consentCb, <lotameClientId>, customerConsents);
+window.lotame_<lotameClientId>.setConsent(setConsentCb, <lotameConsentClientId>, customerConsents);
 ```
 
 The `setConsent` method has 4 possible return values in the object passed to the callback. 
@@ -173,13 +169,9 @@ Consent Collection not enabled | {"error": 202} | The client id is not configure
 `getConsent` is almost exactly the same as `setConsent` with the difference being, you do not pass in any consents to set. The return object is in the same format and passed to the callback just like `setConsent`.
 
 ```javascript
-function consentCb(returnData) {
-  // Now that consent is loaded in your Lotame DMP, run data collection and targeting 
-  var dataCollection = {
-    // data fields here
-  };
-  window.lotame_<lotameClientId>.page(dataCollection);
+function getConsentCb(returnData) {
+  console.log('LT.JS: Placeholder for getConsentCb logic');
 }
 
-window.lotame_<lotameClientId>.getConsent(consentCb, <lotameClientId>);
+window.lotame_<lotameClientId>.getConsent(getConsentCb, <lotameConsentClientId>);
 ```
