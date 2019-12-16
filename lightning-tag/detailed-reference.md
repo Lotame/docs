@@ -1,5 +1,7 @@
 # Detailed Reference Guide
 
+This page provides reference details for all available Lotame Lightning Tag functionality. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
+
 ## Platform Setup
 
 Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)

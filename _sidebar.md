@@ -3,7 +3,6 @@
   * [Custom Ad Server Implmentation](lightning-tag/implementation-generic.md)
   * [Google Ad Manager Implmentation](lightning-tag/implementation-google-ad-manager.md)
   * [Data Collection](lightning-tag/data-collection.md)
-    * [Custom Data Collection](lightning-tag/data-collection-custom.md)
-    * [Post-Page Load Data Collection](lightning-tag/data-collection-post-page-load.md)
+    * [User Consent Guide](lightning-tag/user-consent.md)
   * [Reference Guide](lightning-tag/detailed-reference.md)
   * [FAQ](lightning-tag/faq.md)

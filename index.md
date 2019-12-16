@@ -32,11 +32,11 @@ For Lotame customers that use Google Ad Manager (formerly DoubleClick for Publis
 
 ## Data Collection
 
-To pass data to your Lotame DMP on page-load, review the Lotame [Lightning Tag Data Collection Guide](lightning-tag/data-collection.md).
+To pass data to your Lotame DMP, review the Lotame [Lightning Tag Data Collection Guide](lightning-tag/data-collection.md).
 
-### Pass Data Post-Page Load
+### User Consent
 
-For Lotame customers who have one-page sites or want to note when a customer takes specific action on the page you can use Lotame Lightning Tag to pass that information. Use the [Lotame Lightning Tag Post-Page Load Guide](lightning-tag/data-collection-post-page-load.md) to learn how to use this functionality.
+If your company has user consent requirements, refer to the [Lightning Tag User Consent Guide](lightning-tag/data-collection-user-consent.md)
 
 ## Detailed Lightning Tag Reference
 
