@@ -16,7 +16,7 @@ var customerConsents = {
   datasharing: true,
   targeting: true
 };
-window.lotame_<lotameClientId>.setConsent(consentCb, <lotameConsentClientid>, customerConsents);
+window.lotame_<lotameClientId>.setConsent(consentCb, <lotameConsentClientId>, customerConsents);
 ```
 
 A successful call to `setConsent` passes the following object to the callback method:
@@ -53,7 +53,7 @@ To retrieve consent signals previously sent to Lotame, use the `getConsent()` me
 function consentCb(returnData) {};
 
 // Set these as true or false as per the signals from your User Consent process
-window.lotame_<lotameClientId>.getConsent(consentCb, <lotameConsentClientid>);
+window.lotame_<lotameClientId>.getConsent(consentCb, <lotameConsentClientId>);
 ```
 
 The full details of these two methods, along with all other functionality of the Lotame Lightning Tag, can be found in the [Lightning Tag Field Reference Guide](lightning-tag/detailed-reference.md).
