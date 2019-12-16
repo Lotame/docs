@@ -1,6 +1,6 @@
 # Detailed Reference Guide
 
-This page provides reference details to all available Lotame Lightning Tag functionality. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
+This page provides reference details for all available Lotame Lightning Tag functionality. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
 
 ## Platform Setup
 
