@@ -1,4 +1,4 @@
-# Data Collection
+# Data Collection Guide
 
 ## Passing Data on Page Load
 

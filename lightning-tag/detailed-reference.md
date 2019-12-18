@@ -4,7 +4,7 @@ This page provides reference details for all available Lotame Lightning Tag func
 
 ## Platform Setup
 
-Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
+Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described on [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
 
 ## Lightning Tag Setup
 

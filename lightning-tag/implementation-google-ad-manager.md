@@ -1,4 +1,4 @@
-# Implementation Guide with Google Ad Manager
+# Google Ad Manager Guide
 
 This document has the best practice for integrating the Lotame Lightning Tag with Google Ad Manager (formerly known as DoubleClick for Publishers). The example below allows you to receive the Lotame audience matches for a user and pass those audiences to Google Ad Manager for targeting.
 
