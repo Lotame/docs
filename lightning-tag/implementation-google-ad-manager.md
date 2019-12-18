@@ -24,7 +24,6 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
     } catch(e) {
     } 
 
-
     // Callback when targeting audience is ready to push latest audience data
     var audienceReadyCallback = function (profile) {
 
