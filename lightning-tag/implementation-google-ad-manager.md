@@ -16,12 +16,14 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
     window.googletag.cmd = window.googletag.cmd || []; 
 
     // Immediately get audiences from local storage and get them loaded
-    if (window.localStorage && window.localStorage.getItem) {
-      var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || "";
+    try {
+      var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
       googletag.cmd.push(function() {
         window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
       });  
-    }
+    } catch(e) {
+    } 
+
 
     // Callback when targeting audience is ready to push latest audience data
     var audienceReadyCallback = function (profile) {
