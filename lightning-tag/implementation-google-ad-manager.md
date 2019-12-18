@@ -1,8 +1,10 @@
 # Implementation Guide with Google Ad Manager
 
-This document has the Best Practice for integrating the Lotame Lightning Tag with Google Ad Manager (formerly known as DoubleClick for Publishers). The example below allows you to receive the Lotame audience matches for a customer and pass those audiences to Google Ad Manager for targeting.
+This document has the best practice for integrating the Lotame Lightning Tag with Google Ad Manager (formerly known as DoubleClick for Publishers). The example below allows you to receive the Lotame audience matches for a user and pass those audiences to Google Ad Manager for targeting.
 
-In order to ensure the fastest audience targeting response, copy and paste the following into the `<head>` section of your page. Deploy this Javascript after the `googletag` object is set up in the `<head>` section earlier on the page, but before the `google.enableServices()` call to ensure that your Lotame audiences are included in the passing of fields to Google. 
+NOTE: If you are using another ad manager than Google, simply replace any lines referencing googletag with references to your specific implementation.
+
+In order to ensure the fastest audience targeting response, copy and paste the following into the `<head>` section of your page. Deploy this Javascript after the `googletag` object is set up in the `<head>` section earlier on the page, but before the `google.enableServices()` call to ensure that your Lotame audiences are included in the call to Google. 
 
 Before using this snippet, please replace the instances of `<lotameClientId>` with your Lotame account's client ID.
 
@@ -15,7 +17,7 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
     window.googletag = window.googletag || {};
     window.googletag.cmd = window.googletag.cmd || []; 
 
-    // Immediately get audiences from local storage and get them loaded
+    // Immediately get audiences from local storage and set them in preparation for calls to Google
     if (window.localStorage && window.localStorage.getItem) {
       var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || "";
       googletag.cmd.push(function() {
@@ -26,10 +28,10 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
     // Callback when targeting audience is ready to push latest audience data
     var audienceReadyCallback = function (profile) {
 
-      // Get audiences in a comma separated string which conforms to Google Ads input format
+      // Get audiences in a comma-separated string which conforms to Google Ads input format
       var lotameAudiences = profile.getAudienceString(',') || "";
   
-      // Set the target audiences at Google
+      // Set the new target audiences for call to Google
       googletag.cmd.push(function() {
         window.googletag.pubads().setTargeting('lotame', lotameAudiences);
       });  

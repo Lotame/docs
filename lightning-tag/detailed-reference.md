@@ -22,7 +22,7 @@ Setup of the Lotame Lightning Tag javascript on your website involves an input o
      ! function(input) {
          input = input || {};
          var config = input.config || {};
-         namespace = window['lotame_' + config.clientId] = {};
+         var namespace = window['lotame_' + config.clientId] = {};
          namespace.config = config;
          namespace.data = input.data || {};
      } (lotameTagInput);
