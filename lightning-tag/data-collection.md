@@ -67,7 +67,7 @@ This option takes the same `{data}` object as described in [Lightning Tag Data C
 
 ## Triggering New Page Load Events
 
-Lightning Tag provides a `page()` method that you can pass data in on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a page view in Lotame and initiates targeting again which will update audiences in your audience callback or local storage as well as fire any additional sync pixels, export beacons, or automated data collection rules for the page. 
+Lightning Tag provides a `page()` method that you can pass data in on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a page view in Lotame and reinitiates all Lightning Tag functions that normally occur on page load. This includes data collection, targeting (updates audiences in your audience callback or local storage), and  3rd party pixel (sync pixels and export beacons) firing.
 
 An example use-case is a single page app where the URL remains the same, no new page load events occur, but the main content of the window is replaced. `page()` allows your site to note the new pageView and pass data in that corresponds to the new page so targeting can be rerun based on this new information.
 
