@@ -1,6 +1,6 @@
 # Data Collection Guide
 
-## Passing Data on Page Load
+## Passing Data on Tag Load
 
 Lightning Tag will automatically execute any data collection rules that you have configured in cooperation with your Lotame account representative. In addition, you can explicitly pass in data attributed to the user by supplying it in the `data` object of your tag input.
 
@@ -39,23 +39,11 @@ var lotameTagInput = {
 } (lotameTagInput);
 ```
 
-[comment]: # (Markdown tables are not fun especially trying to embed code in them)
+The `data` object's parameters are fully described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
 
-Name | Description | Example
----- | ----------- | -------
-behaviorIds	| Existing behavior ID's from your DMP account that are owned by the same client supplied in the tag |data: { <br/>&nbsp;&nbsp;behaviorIds: [1,2,3], <br/> },
-behaviors | New or existing behaviors as type/value pairs, where the type is a supported type in the DMP, respectively <br/> 'int' = interest <br/> 'med' = media <br/> 'act' = action  <br/> 'seg' = custom segment |data: { <br/> &nbsp;&nbsp;behaviors: { <br/> &nbsp;&nbsp;&nbsp;&nbsp;int: ['site section: news', 'traffic: mysite.com'], <br/> &nbsp;&nbsp;&nbsp;&nbsp;med: ['article category : politics'] <br/> &nbsp;&nbsp;},<br/> },
-ruleBuilder	| Custom keys and values to be used for the Rule Builder tool within the DMP | data: {<br/>&nbsp;&nbsp;ruleBuilder: {<br/>&nbsp;&nbsp;&nbsp;&nbsp;article_tags: ['food', 'in the news'],<br/>&nbsp;&nbsp;&nbsp;&nbsp;article_title: ['Todays Headline'],<br/>&nbsp;&nbsp;&nbsp;&nbsp;article_author: ['Bob Roberts'],<br/>&nbsp;&nbsp;},<br/>},
-thirdParty | An identifier to associate with the current browser, typically to enable server side data transfer. Your Lotame representative will provide the namespace value as necessary for your implementation. | data: {<br/>&nbsp;&nbsp;thirdParty: {<br/>&nbsp;&nbsp;&nbsp;&nbsp;namespace: 'FAKE',<br/>&nbsp;&nbsp;&nbsp;&nbsp;value: '123456789101112131415'<br/>&nbsp;&nbsp;},<br/>},
-sha256email	| The current users email address, first lower-cased, trimmed of whitespace, then hashed using SHA256	|data: {<br/>&nbsp;&nbsp;sha256email: 'lowercase_no_whitespace_sha256_hashed_email'<br/>},
-
-## Passing Data outside of Page Load
-
-### Page Interactions
+## Passing Data outside of Tag Load
 
 You can use the Lightning Tag `collect()` method to send data from custom events that cannot be handled through standard Lotame data collection rules at any point after the Lightning Tag has loaded.
-
-This option takes the same `{data}` object as describe at the top of the page.
 
 ```javascript
 window.lotame_<lotameClientId>.collect({
@@ -75,9 +63,11 @@ window.lotame_<lotameClientId>.collect({
 });
 ```
 
-### New Page Load Events
+This option takes the same `{data}` object as described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
 
-Lightning Tag provides a `page()` method that you can pass data on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a pageView in Lotame and initiates targeting again which will update audiences in your audience Callback or LocalStorage. 
+## Triggering New Page Load Events
+
+Lightning Tag provides a `page()` method that you can pass data in on just like the `collect()` method described above. Unlike the `collect()` method, the `page()` method records a page view in Lotame and reinitiates all Lightning Tag functions that normally occur on page load. This includes data collection, targeting (updates audiences in your audience callback or local storage), and  3rd party pixel (sync pixels and export beacons) firing.
 
 An example use-case is a single page app where the URL remains the same, no new page load events occur, but the main content of the window is replaced. `page()` allows your site to note the new pageView and pass data in that corresponds to the new page so targeting can be rerun based on this new information.
 
@@ -98,3 +88,4 @@ window.lotame_<lotameClientId>.page({
   sha256email: 'SHA256_VALUE'
 });
 ```
+This option takes the same `{data}` object as described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
