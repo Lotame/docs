@@ -4,7 +4,7 @@ This page provides reference details for all available Lotame Lightning Tag func
 
 ## Platform Setup
 
-Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
+Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described on [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
 
 ## Lightning Tag Setup
 
@@ -22,7 +22,7 @@ Setup of the Lotame Lightning Tag javascript on your website involves an input o
      ! function(input) {
          input = input || {};
          var config = input.config || {};
-         namespace = window['lotame_' + config.clientId] = {};
+         var namespace = window['lotame_' + config.clientId] = {};
          namespace.config = config;
          namespace.data = input.data || {};
      } (lotameTagInput);
