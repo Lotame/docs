@@ -2,7 +2,7 @@
 
 This document has the best practice for integrating the Lotame Lightning Tag with Google Ad Manager (formerly known as DoubleClick for Publishers). The example below allows you to receive the Lotame audience matches for a user and pass those audiences to Google Ad Manager for targeting.
 
-NOTE: If you are using another ad manager than Google, simply replace any lines referencing googletag with references to your specific implementation.
+NOTE: If you are using an ad-server other than Google, simply replace any lines referencing googletag with references to your specific implementation.
 
 In order to ensure the fastest audience targeting response, copy and paste the following into the `<head>` section of your page. Deploy this Javascript after the `googletag` object is set up in the `<head>` section earlier on the page, but before the `google.enableServices()` call to ensure that your Lotame audiences are included in the call to Google. 
 
