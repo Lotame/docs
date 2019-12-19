@@ -90,7 +90,7 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
   
   <script>
-    ! function(input) {
+    ! function() {
       window.googletag = window.googletag || {};
       window.googletag.cmd = window.googletag.cmd || []; 
 
