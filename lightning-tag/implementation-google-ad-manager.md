@@ -31,48 +31,47 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
   
   <script>
-    window.googletag = window.googletag || {};
-    window.googletag.cmd = window.googletag.cmd || []; 
+    ! function() {
+      window.googletag = window.googletag || {};
+      window.googletag.cmd = window.googletag.cmd || []; 
 
-    // Immediately get audiences from local storage and get them loaded
-    try {
-      var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
-      googletag.cmd.push(function() {
-        window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
-      });  
-    } catch(e) {
-    } 
+      // Immediately get audiences from local storage and get them loaded
+      try {
+        var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
+        googletag.cmd.push(function() {
+          window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
+        });  
+      } catch(e) {
+      } 
 
-    // Callback when targeting audience is ready to push latest audience data
-    var audienceReadyCallback = function (profile) {
+      // Callback when targeting audience is ready to push latest audience data
+      var audienceReadyCallback = function (profile) {
 
-      // Get audiences in a comma-separated string which conforms to Google Ads input format
-      var lotameAudiences = profile.getAudienceString(',') || '';
-  
-      // Set the new target audiences for call to Google
-      googletag.cmd.push(function() {
-        window.googletag.pubads().setTargeting('lotame', lotameAudiences);
-      });  
-    };
-  
-    // Lotame Config
-    var lotameTagInput = {
-      data: {},
-      config: {
-        clientId: <lotameClientId>,
-        audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
-        onProfileReady: audienceReadyCallback
-      }
-    };
+        // Get audiences in a comma-separated string which conforms to Google Ads input format
+        var lotameAudiences = profile.getAudienceString(',') || '';
+    
+        // Set the new target audiences for call to Google
+        googletag.cmd.push(function() {
+          window.googletag.pubads().setTargeting('lotame', lotameAudiences);
+        });  
+      };
+    
+      // Lotame Config
+      var lotameTagInput = {
+        data: {},
+        config: {
+          clientId: <lotameClientId>,
+          audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
+          onProfileReady: audienceReadyCallback
+        }
+      };
 
-    // Lotame initialization
-    ! function(input) {
-      input = input || {};
-      var config = input.config || {};
-      var namespace = window['lotame_' + config.clientId] = {};
-      namespace.config = config;
-      namespace.data = input.data || {};
-    } (lotameTagInput);
+      // Lotame initialization
+      var lotameConfig = lotameTagInput.config || {};
+      var namespace = window['lotame_' + lotameConfig.clientId] = {};
+      namespace.config = lotameConfig;
+      namespace.data = lotameTagInput.data || {};
+    }();
   </script>
   
   <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
@@ -91,60 +90,59 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
   
   <script>
-    window.googletag = window.googletag || {};
-    window.googletag.cmd = window.googletag.cmd || []; 
-
-    // Immediately get audiences from local storage and get them loaded
-    try {
-      var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
-      googletag.cmd.push(function() {
-        window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
-      });
-
-      var localStoragePid = window.localStorage.getItem('_cc_id') || '';
-      if (localStoragePid) {
-        googletag.cmd.push(function() {
-            window.googletag.pubads().setTargeting('lpid', localStoragePid);
-        });
-      }
-    } catch(e) {
-    } 
-
-    // Callback when targeting audience is ready to push latest audience data
-    var audienceReadyCallback = function (profile) {
-
-      // Get audiences in a comma-separated string which conforms to Google Ads input format
-      var lotameAudiences = profile.getAudienceString(',') || '';
-  
-      // Set the new target audiences for call to Google
-      googletag.cmd.push(function() {
-        window.googletag.pubads().setTargeting('lotame', lotameAudiences);
-      });  
-
-      var lotamePid = profile.getProfileId() || '';
-      googletag.cmd.push(function() {
-        window.googletag.pubads().setTargeting("lpid", lotamePid);
-      });
-    };
-  
-    // Lotame Config
-    var lotameTagInput = {
-      data: {},
-      config: {
-        clientId: <lotameClientId>,
-        audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
-        onProfileReady: audienceReadyCallback
-      }
-    };
-
-    // Lotame initialization
     ! function(input) {
-      input = input || {};
-      var config = input.config || {};
-      var namespace = window['lotame_' + config.clientId] = {};
-      namespace.config = config;
-      namespace.data = input.data || {};
-    } (lotameTagInput);
+      window.googletag = window.googletag || {};
+      window.googletag.cmd = window.googletag.cmd || []; 
+
+      // Immediately get audiences from local storage and get them loaded
+      try {
+        var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
+        googletag.cmd.push(function() {
+          window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
+        });
+
+        var localStoragePid = window.localStorage.getItem('_cc_id') || '';
+        if (localStoragePid) {
+          googletag.cmd.push(function() {
+              window.googletag.pubads().setTargeting('lpid', localStoragePid);
+          });
+        }
+      } catch(e) {
+      } 
+
+      // Callback when targeting audience is ready to push latest audience data
+      var audienceReadyCallback = function (profile) {
+
+        // Get audiences in a comma-separated string which conforms to Google Ads input format
+        var lotameAudiences = profile.getAudienceString(',') || '';
+    
+        // Set the new target audiences for call to Google
+        googletag.cmd.push(function() {
+          window.googletag.pubads().setTargeting('lotame', lotameAudiences);
+        });  
+
+        var lotamePid = profile.getProfileId() || '';
+        googletag.cmd.push(function() {
+          window.googletag.pubads().setTargeting("lpid", lotamePid);
+        });
+      };
+    
+      // Lotame Config
+      var lotameTagInput = {
+        data: {},
+        config: {
+          clientId: <lotameClientId>,
+          audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
+          onProfileReady: audienceReadyCallback
+        }
+      };
+
+      // Lotame initialization
+      var lotameConfig = lotameTagInput.config || {};
+      var namespace = window['lotame_' + lotameConfig.clientId] = {};
+      namespace.config = lotameConfig;
+      namespace.data = lotameTagInput.data || {};
+    } ();
   </script>
   
   <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
