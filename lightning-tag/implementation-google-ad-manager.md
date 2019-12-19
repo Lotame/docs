@@ -17,6 +17,8 @@ Lotame recommends loading this directly on your page in the `<head>` section to 
 <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
 ```
 
+!> By default we send all audiences for your user to Google. If you would like to limit that number, see [Limit Audiences](lightning-tag/faq?id=how-can-i-limit-the-number-of-audiences-returned).
+
 To see the full feature set that the Lotame Lightning Tag offers, including passing in your own data fields for rule matching purposes, visit the [Detailed Reference Guide](lightning-tag/detailed-reference.md). Also check out the [Lightning Tag FAQ](lightning-tag/faq.md) for answers to common questions. If you need any other assistance, please reach out to Lotame by emailing support@lotame.com.
 
 ## Push Audiences to Google
