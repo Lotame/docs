@@ -4,7 +4,7 @@ This page provides reference details for all available Lotame Lightning Tag func
 
 ## Platform Setup
 
-Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described in the [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
+Before implementing the Lotame Lightning Tag on your site, there is setup that needs to be completed inside the Lotame Platform as described on [Pre-Implementation Setup Tasks](lightning-tag/implementation-setup-tasks.md)
 
 ## Lightning Tag Setup
 
@@ -22,7 +22,7 @@ Setup of the Lotame Lightning Tag javascript on your website involves an input o
      ! function(input) {
          input = input || {};
          var config = input.config || {};
-         namespace = window['lotame_' + config.clientId] = {};
+         var namespace = window['lotame_' + config.clientId] = {};
          namespace.config = config;
          namespace.data = input.data || {};
      } (lotameTagInput);
@@ -87,9 +87,17 @@ A use-case for setting this to `false` is if you want to get the customer's cons
 
 ### Data Object
 
-The `data` object is used to pass first party-data to the Lotame DMP for use in targeting or other features of the Lotame platform. The object is optionally passed at setup time in the tag input function. It can also be passed post-page load in the `collect({data})` or in the `page({data})` methods that is described further down this page.
+The `data` object is used to pass first party-data to the Lotame DMP for use in targeting or other features of the Lotame platform. The object is optionally passed at setup time in the tag input function. It can also be passed post-page load in the `collect({data})` or in the `page({data})` methods that are described further down this page.
 
-The `data` object's parameters are fully described in [Lightning Tag Data Collection](lightning-tag/data-collection.md).
+[comment]: # (Markdown tables are not fun especially trying to embed code in them)
+
+Name | Description | Example
+---- | ----------- | -------
+behaviorIds	| Existing behavior ID's from your DMP account that are owned by the same client supplied in the tag |data: { <br/>&nbsp;&nbsp;behaviorIds: [1,2,3], <br/> },
+behaviors | New or existing behaviors as type/value pairs, where the type is a supported type in the DMP, respectively <br/> 'int' = interest <br/> 'med' = media <br/> 'act' = action  <br/> 'seg' = custom segment |data: { <br/> &nbsp;&nbsp;behaviors: { <br/> &nbsp;&nbsp;&nbsp;&nbsp;int: ['site section: news', 'traffic: mysite.com'], <br/> &nbsp;&nbsp;&nbsp;&nbsp;med: ['article category : politics'] <br/> &nbsp;&nbsp;},<br/> },
+ruleBuilder	| Custom keys and values to be used for the Rule Builder tool within the DMP | data: {<br/>&nbsp;&nbsp;ruleBuilder: {<br/>&nbsp;&nbsp;&nbsp;&nbsp;article_tags: ['food', 'in the news'],<br/>&nbsp;&nbsp;&nbsp;&nbsp;article_title: ['Todays Headline'],<br/>&nbsp;&nbsp;&nbsp;&nbsp;article_author: ['Bob Roberts'],<br/>&nbsp;&nbsp;},<br/>},
+thirdParty | An identifier to associate with the current browser, typically to enable server side data transfer. Your Lotame representative will provide the namespace value as necessary for your implementation. | data: {<br/>&nbsp;&nbsp;thirdParty: {<br/>&nbsp;&nbsp;&nbsp;&nbsp;namespace: 'FAKE',<br/>&nbsp;&nbsp;&nbsp;&nbsp;value: '123456789101112131415'<br/>&nbsp;&nbsp;},<br/>},
+sha256email	| The current users email address, first lower-cased, trimmed of whitespace, then hashed using SHA256	|data: {<br/>&nbsp;&nbsp;sha256email: 'lowercase_no_whitespace_sha256_hashed_email'<br/>},
 
 ## Lightning Tag Methods
 
@@ -155,14 +163,7 @@ var customerConsents = {
 window.lotame_<lotameClientId>.setConsent(setConsentCb, <lotameConsentClientId>, customerConsents);
 ```
 
-The `setConsent` method has 4 possible return values in the object passed to the callback. 
-
-Return State | Return Object Format | Description
------------- | -------------------- | -----------
-Success |{<br/>&nbsp;&nbsp;"consent": [{<br/>&nbsp;&nbsp;&nbsp;&nbsp;"clientid":CONSENT_CLIENT_ID,<br/>&nbsp;&nbsp;&nbsp;&nbsp;"lastupdate": UTC_SECONDS,<br/>&nbsp;&nbsp;&nbsp;&nbsp;"types": [{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "analytics",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"consent": true<br/>&nbsp;&nbsp;&nbsp;&nbsp;}, {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "targeting",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"consent": true<br/>&nbsp;&nbsp;&nbsp;&nbsp;}, {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "datasharing",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"consent": true<br/>&nbsp;&nbsp;&nbsp;&nbsp;}, {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "crossdevice",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"consent": true<br/>&nbsp;&nbsp;&nbsp;&nbsp;}]<br/>&nbsp;&nbsp;}]<br/>} | The Lotame DMP recorded the consent signals as indicated and will enforce them going forward. The Lotame Consent API will only store and return here signals that you’ve explicitly provided via a set call (i.e. the types array could be empty).
-Browser opted out of Lotame cookies | {"error": 200} | The Lotame DMP is unable to store or enforce consent.
-Could not write cookie | {"error": 201} | The Lotame DMP is unable to store or enforce consent.
-Consent Collection not enabled | {"error": 202} | The client id is not configured to store or enforce consent.
+The `returnData` object provided to the callback is fully described in [User Consent Guide](lightning-tag/user-consent?id=callback-data).
 
 ### getConsent()
 
@@ -175,3 +176,5 @@ function getConsentCb(returnData) {
 
 window.lotame_<lotameClientId>.getConsent(getConsentCb, <lotameConsentClientId>);
 ```
+
+The `returnData` object provided to the callback is fully described in [User Consent Guide](lightning-tag/user-consent?id=callback-data).
