@@ -89,3 +89,41 @@ try {
 } catch(e) {
 } 
 ```
+
+## How can I limit the number of audiences returned?
+
+Our servers will always return the full set of audiences that your user qualifies for. However, you can limit the number of audiences you use through the following methods:
+
+1. In the `onProfileReady` callback, the profile object has both `getAudiences()` and `getAudiencesString()` functions which accept a limit as their second parameter like
+   ```html
+    var audienceReadyCallback = function (profile) {
+      var limit = 1000;
+
+      // Get audiences in a comma-separated string
+      var lotameAudiences = profile.getAudienceString(',', limit) || "";
+    };
+
+    // Lotame Config
+    var lotameTagInput = {
+      data: {},
+      config: {
+        clientId: <lotameClientId>,
+        audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
+        onProfileReady: audienceReadyCallback
+      }
+    };
+   ```
+1. When retrieving from local storage, you can use the following snippet to limit the number returned
+   ```html
+    var localStorageAudiencesRaw = localStorage.getItem("lotame_<lotameClientId>_auds") || '';
+    var localStorageAudiences = localStorageAudiencesRaw.split(",");
+    var targetingList = [];
+    var maxItems = 1000;
+    for (var i = 0; i < maxItems && i < localStorageAudiences.length; i++) {
+      targetingList.push(localStorageAudiences[i]);
+    }
+   ```
+
+## How can I prioritize which audiences are returned first?
+
+Provide a list of audiences you would like to return first to your Lotame representative, and they will prioritize them accordingly in the platform.
