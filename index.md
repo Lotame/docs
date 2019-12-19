@@ -22,19 +22,15 @@ Before you enable the Lotame Lightning Tag on your site, you need to perform som
 
 ## Implementation Guides
 
-### Quickstart with Custom Ad Server
-
-To quickly setup your Lotame implementation to capture targeting information on your customers including 1st visit customers, see the Best Practice Guide for the integrating [Lotame Lightning Tag with your company's ad-serving solution](lightning-tag/implementation-generic).
-
-### QuickStart with Google Ad Manager
+### Google Ad Manager Guide
 
 For Lotame customers that use Google Ad Manager (formerly DoubleClick for Publishers) for their ad-serving, we have an example showing you how to pass your Lotame audience data in our Best Practice Guide for integrating [Lotame Lightning Tag with Google Ad Manager](lightning-tag/implementation-google-ad-manager.md).
 
-## Data Collection
+### Data Collection Guide
 
 To pass data to your Lotame DMP, review the Lotame [Lightning Tag Data Collection Guide](lightning-tag/data-collection.md).
 
-### User Consent
+### User Consent Guide
 
 If your company has user consent requirements, refer to the [Lightning Tag User Consent Guide](lightning-tag/data-collection-user-consent.md)
 
