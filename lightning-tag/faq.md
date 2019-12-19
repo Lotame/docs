@@ -71,6 +71,21 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
   </script>
   
   <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
-</head>```
+</head>
+```
 
 If you still need assistance, please reach out to Lotame by emailing support@lotame.com.
+
+## How can I access Lotame's profile id in my browser?
+
+1. In the onProfileReady callback, you can retrieve the latest profile id for the browser by using the `getProfileId()` function as described at [Audience Callback](lightning-tag/detailed-reference?id=audience-callback).
+
+1. The Lotame profile id is stored in local storage when possible under the key `_cc_id` and can be retrieved by the following code:
+
+```html
+var localStoragePid = '';
+try {
+  localStoragePid = window.localStorage.getItem('_cc_id') || '';
+} catch(e) {
+} 
+```
