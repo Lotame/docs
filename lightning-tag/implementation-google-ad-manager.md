@@ -123,7 +123,7 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
 
         var lotamePid = profile.getProfileId() || '';
         googletag.cmd.push(function() {
-          window.googletag.pubads().setTargeting("lpid", lotamePid);
+          window.googletag.pubads().setTargeting('lpid', lotamePid);
         });
       };
     
