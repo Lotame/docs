@@ -1,42 +1,43 @@
 # Data Collection Guide
 
+!> Please remove all example values before copying on to your page.
+
 ## Passing Data on Tag Load
 
 Lightning Tag will automatically execute any data collection rules that you have configured in cooperation with your Lotame account representative. In addition, you can explicitly pass in data attributed to the user by supplying it in the `data` object of your tag input.
 
 ```javascript
-// Lotame Config
-var lotameTagInput = {
-  data: {
-    behaviorIds: [CSV_OF_BEHAVIOR_IDS],
-    behaviors: {
-      int: ['behaviorName', 'behaviorName2'],
-      act: ['behaviorName']
-    },
-    ruleBuilder: {
-      key1: ['value 1a', 'value 1b']
-    },
-    thirdParty: {
-      namespace: 'NAMESPACE',
-      value: 'TPID_VALUE'
-    },
-    sha256email: 'SHA256_VALUE'
-  },
-  config: {
-    clientId: <lotameClientId>,
-    audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
-    onProfileReady: audienceReadyCallback
-  }
-};
+! function() {
+  var lotameClientId = '<lotameClientId>';
 
-// Lotame initialization
-! function(input) {
-  input = input || {};
-  var config = input.config || {};
-  var namespace = window['lotame_' + config.clientId] = {};
-  namespace.config = config;
-  namespace.data = input.data || {};
-} (lotameTagInput);
+  // Lotame Config
+  var lotameTagInput = {
+    data: {
+      behaviorIds: [1,2,3],
+      behaviors: {
+        int: ['behaviorName', 'behaviorName2'],
+        act: ['behaviorName']
+      },
+      ruleBuilder: {
+        key1: ['value 1a', 'value 1b']
+      },
+      thirdParty: {
+        namespace: 'NAMESPACE',
+        value: 'TPID_VALUE'
+      },
+      sha256email: 'SHA256_VALUE'
+    },
+    config: {
+      clientId: Number(lotameClientId)
+    }
+  };
+
+  // Lotame initialization
+  var lotameConfig = lotameTagInput.config || {};
+  var namespace = window['lotame_' + lotameConfig.clientId] = {};
+  namespace.config = lotameConfig;
+  namespace.data = lotameTagInput.data || {};
+} ();
 ```
 
 The `data` object's parameters are fully described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
@@ -47,7 +48,7 @@ You can use the Lightning Tag `collect()` method to send data from custom events
 
 ```javascript
 window.lotame_<lotameClientId>.collect({
-  behaviorIds: [CSV_OF_BEHAVIOR_IDS],
+  behaviorIds: [1,2,3],
   behaviors: {
     int: ['behaviorName', 'behaviorName2'],
     act: ['behaviorName']
@@ -73,7 +74,7 @@ An example use-case is a single page app where the URL remains the same, no new 
 
 ```javascript
 window.lotame_<lotameClientId>.page({
-  behaviorIds: [CSV_OF_BEHAVIOR_IDS],
+  behaviorIds: [1,2,3],
   behaviors: {
     int: ['behaviorName', 'behaviorName2'],
     act: ['behaviorName']
