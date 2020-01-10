@@ -13,10 +13,11 @@ Setup of the Lotame Lightning Tag javascript on your website involves an input o
 ```javascript
 <script>
   ! function() {
+    var lotameClientId = '<lotameClientId>';
     var lotameTagInput = {
         data: {},
         config: {
-            clientId: CLIENT_ID
+          clientId: Number(lotameClientId)
         }
     };
 

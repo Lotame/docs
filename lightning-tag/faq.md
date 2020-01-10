@@ -19,55 +19,61 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
   <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">  
 
-  <script>
-    var targetAndDisplayAds = function(commaSeparatedAudienceString) {
+  <script>    
+    var targetAndDisplayAds = function(audienceArray) {
       console.log('Replace with implementation that calls googletag or other ad-rendering capabilities');
     }
 
-    // Adjust this timing as needed
-    var maxAudienceWaitMillis = 500;
-  
-    // Set up fallback logic if timeout is reached
-    var audienceReadyTimeoutId = window.setTimeout(function() {
-      var localStorageAudiences = '';
+    ! function() {
+      var lotameClientId = '<lotameClientId>';
+      var audLocalStorageKey = 'lotame_' + lotameClientId + '_auds';
 
-      try {
-        localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
-      } catch(e) {
-      } finally {
-        targetAndDisplayAds(localStorageAudiences);
-      }
-    }, maxAudienceWaitMillis);
+      // Adjust this timing as needed
+      var maxAudienceWaitMillis = 500;
+    
+      // Set up fallback logic if timeout is reached
+      var audienceReadyTimeoutId = window.setTimeout(function() {
+        var localStorageAudiences = [];
 
-    var audienceReadyCallback = function(profile) { 
-      // Get audience string & Call your company's Ad Display function
-      var lotameAudiences = profile.getAudienceString(',') || '';
+        try {
+          var tempAudiences = window.localStorage.getItem(audLocalStorageKey) || '';
 
-      // Cancel the timeout
-      window.clearTimeout(audienceReadyTimeoutId);
+          if (tempAudiences) {
+            localStorageAudiences = tempAudiences.split(',');
+          }
+        } catch(e) {
+        } finally {
+          targetAndDisplayAds(localStorageAudiences);
+        }
+      }, maxAudienceWaitMillis);
 
-      targetAndDisplayAds(lotameAudiences);
-    };
-  
-    // Lotame Config
-    var lotameTagInput = {
-      data: {},
-      config: {
-        clientId: <lotameClientId>,
-        onProfileReady: audienceReadyCallback,
-        audienceLocalStorage: true // written to 'lotame_<lotameClientId>_auds' key
-      }
-    };
+      var audienceReadyCallback = function(profile) { 
+        // Get audience string & Call your company's Ad Display function
+        var lotameAudiences = profile.getAudiences() || [];
 
-    // Lotame initialization
-    ! function(input) {
-      input = input || {};
-      var config = input.config || {};
-      var namespace = window['lotame_' + config.clientId] = {};
-      namespace.config = config;
-      namespace.data = input.data || {};
-    } (lotameTagInput);
-  
+        // Cancel the timeout
+        window.clearTimeout(audienceReadyTimeoutId);
+
+        targetAndDisplayAds(lotameAudiences);
+      };
+    
+      // Lotame Config
+      var lotameTagInput = {
+        data: {},
+        config: {
+          clientId: Number(lotameClientId),
+          audienceLocalStorage: audLocalStorageKey,
+          onProfileReady: audienceReadyCallback
+        }
+      };
+
+      // Lotame initialization
+      var lotameConfig = lotameTagInput.config || {};
+      var namespace = window['lotame_' + lotameConfig.clientId] = {};
+      namespace.config = lotameConfig;
+      namespace.data = lotameTagInput.data || {};
+    } ();
+
   </script>
   
   <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
@@ -94,13 +100,13 @@ try {
 
 Our servers will always return the full set of audiences that your user qualifies for. However, you can limit the number of audiences you use through the following methods:
 
-1. In the `onProfileReady` callback, the profile object has both `getAudiences()` and `getAudiencesString()` functions which accept a limit as their second parameter like
+1. In the `onProfileReady` callback, the profile object has both `getAudiences()` and `getAudiencesString()` functions which accept a limit parameter as follows
    ```html
     var audienceReadyCallback = function (profile) {
       var limit = 1000;
 
-      // Get audiences in a comma-separated string
-      var lotameAudiences = profile.getAudienceString(',', limit) || "";
+      // Get audiences as an array
+      var lotameAudiences = profile.getAudiences(limit) || [];
     };
 
     // Lotame Config
@@ -113,15 +119,12 @@ Our servers will always return the full set of audiences that your user qualifie
       }
     };
    ```
-1. When retrieving from local storage, you can use the following snippet to limit the number returned
+2. When retrieving from local storage, you can use the following snippet to limit the number returned
    ```html
-    var localStorageAudiencesRaw = localStorage.getItem("lotame_<lotameClientId>_auds") || '';
-    var localStorageAudiences = localStorageAudiencesRaw.split(",");
-    var targetingList = [];
+    var localStorageAudiencesRaw = localStorage.getItem('lotame_<lotameClientId>_auds') || '';
+    var localStorageAudiences = localStorageAudiencesRaw.split(',');
     var maxItems = 1000;
-    for (var i = 0; i < maxItems && i < localStorageAudiences.length; i++) {
-      targetingList.push(localStorageAudiences[i]);
-    }
+    var targetingList = localStorageAudiences.slice(0, maxItems);
    ```
 
 ## How can I prioritize which audiences are returned first?
