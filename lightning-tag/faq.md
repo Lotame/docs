@@ -61,9 +61,9 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
       var lotameTagInput = {
         data: {},
         config: {
-          clientId: <lotameClientId>,
-          onProfileReady: audienceReadyCallback,
-          audienceLocalStorage: true // written to 'lotame_<lotameClientId>_auds' key
+          clientId: Number(lotameClientId),
+          audienceLocalStorage: audLocalStorageKey,
+          onProfileReady: audienceReadyCallback
         }
       };
 
