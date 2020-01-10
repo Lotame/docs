@@ -6,7 +6,7 @@ This document has the best practice for integrating the Lotame Lightning Tag wit
 
 NOTE: If you are using an ad-server other than Google, simply replace any lines referencing googletag with references to your specific implementation.
 
-In order to ensure the fastest audience targeting response, copy and paste the following into the `<head>` section of your page. Make sure that the onProfileReady callback returns before the `google.enableServices()` call is made to ensure that your Lotame audiences are included in the call to Google. 
+In order to ensure the fastest audience targeting response, copy and paste the following into the `<head>` section of your page. Make sure that the onProfileReady callback returns before the `googletag.enableServices()` call is made to ensure that your Lotame audiences are included in the call to Google. 
 
 Lotame recommends loading this directly on your page in the `<head>` section to best ensure that targeting calls will complete in time to successfully include Lotame's audiences in your ad calls. We recommend against loading through a tag manager such as Google Tag Manager (GTM). 
 
