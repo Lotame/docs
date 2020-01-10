@@ -33,26 +33,32 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
   <script>
     ! function() {
       window.googletag = window.googletag || {};
-      window.googletag.cmd = window.googletag.cmd || []; 
+      window.googletag.cmd = window.googletag.cmd || [];
+      var targetingKey = 'lotame';
+      var lotameClientId = '<lotameClientId>';
+      var audLocalStorageKey = 'lotame_' + lotameClientId + '_auds';
 
       // Immediately get audiences from local storage and get them loaded
       try {
-        var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
-        googletag.cmd.push(function() {
-          window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
-        });  
+        var storedAuds = window.localStorage.getItem(audLocalStorageKey) || '';
+
+        if (storedAuds) {
+          googletag.cmd.push(function() {
+            window.googletag.pubads().setTargeting(targetingKey, storedAuds.split(','));
+          });
+        }
       } catch(e) {
       } 
 
       // Callback when targeting audience is ready to push latest audience data
       var audienceReadyCallback = function (profile) {
 
-        // Get audiences in a comma-separated string which conforms to Google Ads input format
-        var lotameAudiences = profile.getAudienceString(',') || '';
+        // Get audiences as an array
+        var lotameAudiences = profile.getAudiences() || [];
     
         // Set the new target audiences for call to Google
         googletag.cmd.push(function() {
-          window.googletag.pubads().setTargeting('lotame', lotameAudiences);
+          window.googletag.pubads().setTargeting(targetingKey, lotameAudiences);
         });  
       };
     
@@ -60,8 +66,8 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
       var lotameTagInput = {
         data: {},
         config: {
-          clientId: <lotameClientId>,
-          audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
+          clientId: Number(lotameClientId),
+          audienceLocalStorage: audLocalStorageKey,
           onProfileReady: audienceReadyCallback
         }
       };
@@ -92,19 +98,26 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
   <script>
     ! function() {
       window.googletag = window.googletag || {};
-      window.googletag.cmd = window.googletag.cmd || []; 
+      window.googletag.cmd = window.googletag.cmd || [];
+      var audTargetingKey = 'lotame';
+      var pidTargetingKey = 'lpid';
+      var lotameClientId = '<lotameClientId>';
+      var audLocalStorageKey = 'lotame_' + lotameClientId + '_auds';
 
-      // Immediately get audiences from local storage and get them loaded
+      // Immediately load audiences and id from local storage
       try {
-        var localStorageAudiences = window.localStorage.getItem('lotame_<lotameClientId>_auds') || '';
-        googletag.cmd.push(function() {
-          window.googletag.pubads().setTargeting('lotame', localStorageAudiences);
-        });
+        var storedAuds = window.localStorage.getItem(audLocalStorageKey) || '';
+
+        if (storedAuds) {
+          googletag.cmd.push(function() {
+            window.googletag.pubads().setTargeting(audTargetingKey, storedAuds.split(','));
+          });
+        }
 
         var localStoragePid = window.localStorage.getItem('_cc_id') || '';
         if (localStoragePid) {
           googletag.cmd.push(function() {
-              window.googletag.pubads().setTargeting('lpid', localStoragePid);
+              window.googletag.pubads().setTargeting(pidTargetingKey, localStoragePid);
           });
         }
       } catch(e) {
@@ -113,26 +126,28 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
       // Callback when targeting audience is ready to push latest audience data
       var audienceReadyCallback = function (profile) {
 
-        // Get audiences in a comma-separated string which conforms to Google Ads input format
-        var lotameAudiences = profile.getAudienceString(',') || '';
+        // Get audiences as an array
+        var lotameAudiences = profile.getAudiences() || [];
     
         // Set the new target audiences for call to Google
         googletag.cmd.push(function() {
-          window.googletag.pubads().setTargeting('lotame', lotameAudiences);
+          window.googletag.pubads().setTargeting(audTargetingKey, lotameAudiences);
         });  
 
         var lotamePid = profile.getProfileId() || '';
-        googletag.cmd.push(function() {
-          window.googletag.pubads().setTargeting('lpid', lotamePid);
-        });
+        if (lotamePid) {
+          googletag.cmd.push(function() {
+            window.googletag.pubads().setTargeting(pidTargetingKey, lotamePid);
+          });
+        }
       };
     
       // Lotame Config
       var lotameTagInput = {
         data: {},
         config: {
-          clientId: <lotameClientId>,
-          audienceLocalStorage: true, // written to 'lotame_<lotameClientId>_auds' key
+          clientId: Number(lotameClientId),
+          audienceLocalStorage: audLocalStorageKey,
           onProfileReady: audienceReadyCallback
         }
       };
