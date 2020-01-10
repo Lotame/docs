@@ -5,3 +5,6 @@
   * [Data Collection Guide](lightning-tag/data-collection.md)
   * [Detailed Reference Guide](lightning-tag/detailed-reference.md)
   * [FAQ](lightning-tag/faq.md)
+
+* Announcements
+  * [Chrome v80 Secure Cookies](announcements/chrome-80-secure-cookies.md)
