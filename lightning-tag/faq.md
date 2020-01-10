@@ -36,7 +36,7 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
         var localStorageAudiences = [];
 
         try {
-          var tempAudiences = window.localStorage.getItem(audLocalStorageKey) || '';;
+          var tempAudiences = window.localStorage.getItem(audLocalStorageKey) || '';
 
           if (tempAudiences) {
             localStorageAudiences = tempAudiences.split(',');
