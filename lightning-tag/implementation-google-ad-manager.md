@@ -10,9 +10,11 @@ In order to ensure the fastest audience targeting response, copy and paste the f
 
 Lotame recommends loading this directly on your page in the `<head>` section to best ensure that targeting calls will complete in time to successfully include Lotame's audiences in your ad calls. We recommend against loading through a tag manager such as Google Tag Manager (GTM). 
 
-!> If you must use a tag manager, use any priority or sequencing features available to have the Lotame Lightning Tag fire as early as possible. Also, include the below prefetch calls in the `<head>` section of your page and not in the tag management code as this will speed up the loading of the Lightning Tag script to best ensure Lotame audiences are available to your ad calls.
+!> If you must use a tag manager, use any priority or sequencing features available to have the Lotame Lightning Tag fire as early as possible. Also, include the below prefetch and preconnect calls in the `<head>` section of your page and not in the tag management code as this will speed up the loading of the Lightning Tag script to best ensure Lotame audiences are available to your ad calls.
 
 ```html
+<link rel="preconnect" href="https://tags.crwdcntrl.net">
+<link rel="preconnect" href="https://bcp.crwdcntrl.net">
 <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">            
 <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
 ```
@@ -27,7 +29,9 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
 
 ```html
 <head>
-  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">
+  <link rel="preconnect" href="https://tags.crwdcntrl.net">
+  <link rel="preconnect" href="https://bcp.crwdcntrl.net">
+  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">            
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
   
   <script>
@@ -92,7 +96,9 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
 
 ```html
 <head>
-  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">
+  <link rel="preconnect" href="https://tags.crwdcntrl.net">
+  <link rel="preconnect" href="https://bcp.crwdcntrl.net">
+  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">            
   <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
   
   <script>
