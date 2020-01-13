@@ -16,8 +16,10 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
 
 ```html
 <head>
-  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">
-  <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">  
+  <link rel="preconnect" href="https://tags.crwdcntrl.net">
+  <link rel="preconnect" href="https://bcp.crwdcntrl.net">
+  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">            
+  <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
 
   <script>    
     var targetAndDisplayAds = function(audienceArray) {
