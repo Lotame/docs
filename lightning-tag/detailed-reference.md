@@ -135,10 +135,10 @@ The following tasks occur when `page()` is called:
 
 ### getAudiences()
 
-`getAudiences(limit)` is a helper method. It is a shortcut that retrieves the targeted audience array from `localStorage`.
+`getAudiences([limit])` is a shortcut that retrieves the targeted audience array from `localStorage`. It optionally accepts a limit parameter that will restrict the number of audiences returned.
 
 ```javascript
-window.lotame_<lotameClientId>.getAudiences(limit);
+window.lotame_<lotameClientId>.getAudiences();
 ```
 
 Audiences will be returned as an array of targeting codes or audience IDs, based on your established tag settings. Example: `["aud1","aud2"]` or `["123","789"]`. If you would like to limit the number of audiences returned, send in a limit like `getAudiences(100)`.
