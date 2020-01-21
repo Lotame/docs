@@ -43,6 +43,7 @@ onProfileReady | Callback function called once Lotame targeting returns. Discuss
 audienceLocalStorage | Determines whether to write audiences to the browser's `localStorage` and what the name of the key is. Discussed further below in the Local Storage section | `boolean` _**-OR-**_ `string` | NO | `false`
 onTagReady | Callback function called once Lotame Lightning Tag object is loaded and ready to be used. | `function (namespace)` | NO | `{}`
 autoRun | Determines whether Lotame Lightning Tag runs on load. If set to false, your website needs to explicitly call the `page()` method listed on this page to send data and retrieve targeting audiences. | `boolean` | NO | `true`
+bcpPrefix | Overrides the default bcp prefix. Setting it to `cn` will enable data collection in China. | `string` | NO | `bcp`
 
 #### Audience Callback
 
