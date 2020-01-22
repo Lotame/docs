@@ -1,23 +1,22 @@
-# Base Lightning Tag Implementation 
+# Basic Lightning Tag Implementation 
 
 !> This document provides information on how to implement Lightning Tag in its basic form. Throughout this page, there will be links to documentation detailing additional features and use-cases that can be deployed
 
 The base version of Lightning Tag will only:
 
 1. Execute data collection rules that you have configured in cooperation with your Lotame account representative
-1. Fire subscribed sync pixels
-
-This version of the tag is right for you if:
-
-1. 1st party data collection is the only desired use-case and you will not be passing data directly into the tag; instead relying on data collection rules configured within the DMP in cooperation with your Lotame account representative. 
-   * [How to pass data directly into the tag](lightning-tag/data-collection.md)
-1. You do not need audiences to be returned to the page for client-side activation (example passing audiences into your [Google Ad Manager](lightning-tag/implementation-google-ad-manager.md) calls). 
-   * [How to receive information on the profile](lightning-tag/detailed-reference?id=config-object.md)
-
+1. Deploy subscribed sync pixels
+1. Deploy export beacons 
 
 The base verison of Lightning Tag:
 
 ```javascript 
+<head>
+  <link rel="preconnect" href="https://tags.crwdcntrl.net">
+  <link rel="preconnect" href="https://bcp.crwdcntrl.net">
+  <link rel="dns-prefetch" href="https://tags.crwdcntrl.net">            
+  <link rel="dns-prefetch" href="https://bcp.crwdcntrl.net">
+  
 <script>
   ! function() {
     var lotameClientId = '<lotameClientId>';
@@ -35,6 +34,9 @@ The base verison of Lightning Tag:
     namespace.data = lotameTagInput.data || {};
   } ();
 </script>
+
+<script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
+</head>
 ```
 
 Note:
