@@ -38,10 +38,7 @@ The base verison of Lightning Tag:
 <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
 </head>
 ```
-
-Note:
-
-* Setup of the Lotame Lightning Tag javascript on your website involves an input object that gets passed to an initialization function that prepares a window namespace on your page for the javascript tag itself. 
+* Before using this snippet, please replace the instances of `<lotameClientId>`with your Lotame account's client ID.
 * Lotame recommends loading the Lightning Tag directly on your page, in the <head> section. While not always possible, Lotame recommends against loading through a tag manager such as Google Tag Manager (GTM)
 
 
