@@ -133,6 +133,17 @@ The following tasks occur when `page()` is called:
 1. A new page view registers in your Lotame DMP.
 1. Targeting executes, and audiences return on either the callback method or localStorage (or both) depending on how you configured audience extraction on your site.
 
+### getAudiences()
+
+`getAudiences([limit])` is a shortcut that retrieves the targeted audience array from `localStorage`. It optionally accepts a limit parameter that will restrict the number of audiences returned.
+
+```javascript
+window.lotame_<lotameClientId>.getAudiences();
+```
+
+Audiences will be returned as an array of targeting codes or audience IDs, based on your established tag settings. Example: `["aud1","aud2"]` or `["123","789"]`. If you would like to limit the number of audiences returned, send in a limit like `getAudiences(100)`.
+
+?> The `audienceLocalStorage` parameter must be set on the Lotame Lightning Tag `config` object. If it is not, the response to `getAudiences` will be an empty array and an error message will be written to `console` log.
 
 ### setConsent()
 
