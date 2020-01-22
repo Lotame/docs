@@ -37,6 +37,7 @@ Lightning Tag will automatically execute any data collection rules that you have
   var namespace = window['lotame_' + lotameConfig.clientId] = {};
   namespace.config = lotameConfig;
   namespace.data = lotameTagInput.data || {};
+  namespace.cmd = namespace.cmd || [];
 } ();
 ```
 
