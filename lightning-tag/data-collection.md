@@ -26,19 +26,17 @@ Lightning Tag will automatically execute any data collection rules that you have
         value: 'TPID_VALUE'
       },
       sha256email: 'SHA256_VALUE'
-    },
-    config: {
-      clientId: Number(lotameClientId)
     }
   };
 
   // Lotame initialization
   var lotameConfig = lotameTagInput.config || {};
-  var namespace = window['lotame_' + lotameConfig.clientId] = {};
+  var namespace = window['lotame_' + lotameClientId] = {};
   namespace.config = lotameConfig;
   namespace.data = lotameTagInput.data || {};
   namespace.cmd = namespace.cmd || [];
 } ();
+<script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
 ```
 
 The `data` object's parameters are fully described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
@@ -91,3 +89,48 @@ window.lotame_<lotameClientId>.page({
 });
 ```
 This option takes the same `{data}` object as described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
+
+## Using the Asynchronous Command Queue
+Lightning Tag also provides an asynchronous command queue that is similar to what Google Publisher Tag provides. The `page()` and `collect()` methods can be added the queue and will be executed in the order in which they were added once the tag has fully loaded (aka when the `onTagReady` callback would fire). All successive pushes to the queue will be executed immediately.
+
+The command queue is recommended when you add the `async` attribute to the Lightning Tag script tag and do not want to depend on a callback to initiate commands.
+
+```javascript
+! function() {
+  var lotameClientId = '<lotameClientId>';
+
+  // Lotame Config
+  var lotameTagInput = {
+    data: {
+      behaviorIds: [1,2,3],
+      behaviors: {
+        int: ['behaviorName', 'behaviorName2'],
+        act: ['behaviorName']
+      },
+      ruleBuilder: {
+        key1: ['value 1a', 'value 1b']
+      },
+      thirdParty: {
+        namespace: 'NAMESPACE',
+        value: 'TPID_VALUE'
+      },
+      sha256email: 'SHA256_VALUE'
+    }
+  };
+
+  // Lotame initialization
+  var lotameConfig = lotameTagInput.config || {};
+  var namespace = window['lotame_' + lotameClientId] = {};
+  namespace.config = lotameConfig;
+  namespace.data = lotameTagInput.data || {};
+  namespace.cmd = namespace.cmd || [];
+} ();
+<script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
+<script>
+  window['lotame_' + lotameClientId].cmd.push(function() {
+      window['lotame_' + lotameClientId].collect({
+          "behaviorIds": [10005, 10006, 10007],
+      });
+  })
+</script>
+```

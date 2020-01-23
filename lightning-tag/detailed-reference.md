@@ -16,18 +16,18 @@ Setup of the Lotame Lightning Tag javascript on your website involves an input o
     var lotameClientId = '<lotameClientId>';
     var lotameTagInput = {
         data: {},
-        config: {
-          clientId: Number(lotameClientId)
-        }
+        config: {}
     };
 
     // Lotame initialization
     var lotameConfig = lotameTagInput.config || {};
-    var namespace = window['lotame_' + lotameConfig.clientId] = {};
+    var namespace = window['lotame_' + lotameClientId] = {};
     namespace.config = lotameConfig;
     namespace.data = lotameTagInput.data || {};
+    namespace.cmd = namespace.cmd || [];
   } ();
 </script>
+<script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
  ```
 
 The details of the input `data` and `config` options are below.
