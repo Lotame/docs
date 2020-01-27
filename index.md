@@ -22,6 +22,10 @@ Before you enable the Lotame Lightning Tag on your site, you need to perform som
 
 ## Implementation Guides
 
+### Basic Implementation Guide
+
+For Lotame customers that want to collect 1st party data only, along with other basic functions (deploy ID syncing & export beacons). The [Basic Implementation Guide](lightning-tag/basic-implementation.md) will provide our best practice implementation.
+
 ### Google Ad Manager Guide
 
 For Lotame customers that use Google Ad Manager (formerly DoubleClick for Publishers) for their ad-serving, we have an example showing you how to pass your Lotame audience data in our Best Practice Guide for integrating [Lotame Lightning Tag with Google Ad Manager](lightning-tag/implementation-google-ad-manager.md).
