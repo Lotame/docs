@@ -63,7 +63,6 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
       var lotameTagInput = {
         data: {},
         config: {
-          clientId: Number(lotameClientId),
           audienceLocalStorage: audLocalStorageKey,
           onProfileReady: audienceReadyCallback
         }
@@ -71,9 +70,10 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
 
       // Lotame initialization
       var lotameConfig = lotameTagInput.config || {};
-      var namespace = window['lotame_' + lotameConfig.clientId] = {};
+      var namespace = window['lotame_' + lotameClientId] = {};
       namespace.config = lotameConfig;
       namespace.data = lotameTagInput.data || {};
+      namespace.cmd = namespace.cmd || [];
     } ();
 
   </script>

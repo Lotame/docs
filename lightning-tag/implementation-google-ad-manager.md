@@ -81,6 +81,7 @@ Before using this snippet, please replace the instances of `<lotameClientId>` wi
       var namespace = window['lotame_' + lotameConfig.clientId] = {};
       namespace.config = lotameConfig;
       namespace.data = lotameTagInput.data || {};
+      namespace.cmd = namespace.cmd || [];
     }();
   </script>
   
@@ -152,7 +153,6 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
       var lotameTagInput = {
         data: {},
         config: {
-          clientId: Number(lotameClientId),
           audienceLocalStorage: audLocalStorageKey,
           onProfileReady: audienceReadyCallback
         }
@@ -160,12 +160,12 @@ This example uses `lotame` as the Google audience targeting key and `lpid` as th
 
       // Lotame initialization
       var lotameConfig = lotameTagInput.config || {};
-      var namespace = window['lotame_' + lotameConfig.clientId] = {};
+      var namespace = window['lotame_' + lotameClientId] = {};
       namespace.config = lotameConfig;
       namespace.data = lotameTagInput.data || {};
+      namespace.cmd = namespace.cmd || [];
     } ();
   </script>
-  
   <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
 </head>
 ```

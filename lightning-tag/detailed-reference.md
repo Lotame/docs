@@ -16,18 +16,18 @@ Setup of the Lotame Lightning Tag javascript on your website involves an input o
     var lotameClientId = '<lotameClientId>';
     var lotameTagInput = {
         data: {},
-        config: {
-          clientId: Number(lotameClientId)
-        }
+        config: {}
     };
 
     // Lotame initialization
     var lotameConfig = lotameTagInput.config || {};
-    var namespace = window['lotame_' + lotameConfig.clientId] = {};
+    var namespace = window['lotame_' + lotameClientId] = {};
     namespace.config = lotameConfig;
     namespace.data = lotameTagInput.data || {};
+    namespace.cmd = namespace.cmd || [];
   } ();
 </script>
+<script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
  ```
 
 The details of the input `data` and `config` options are below.
@@ -109,7 +109,9 @@ sha256email	| The current users email address, first lower-cased, trimmed of whi
 The `collect()` method is available to pass data to your Lotame DMP after the Lotame javascript is loaded. An example use-case is tracking events such as user interaction with a video player on your site.
 
 ```javascript
-window.lotame_<lotameClientId>.collect({data});
+window.lotame_<lotameClientId>.cmd.push(function() {
+  window.lotame_<lotameClientId>.collect({data});
+});
 ```
 
 The `data` object parameters are described in the [Data Collection page](lightning-tag/data-collection.md).
@@ -121,7 +123,9 @@ Calls to this method are queued up. Every 1 second (and also at the `page.unload
 The `page()` method allows you to re-run your targeting call without reloading the Lotame Lightning Tag script. A use-case is a single-page site which as a user scrolls, new articles pop up. Your site can now pass in new `{data}` elements that describe this new article the user is now viewing and then retrieve updated audiences based on that new information.
 
 ```javascript
-window.lotame_<lotameClientId>.page({data});
+window.lotame_<lotameClientId>.cmd.push(function() {
+  window.lotame_<lotameClientId>.page({data});
+});
 ```
 
 ?> Please note that `{data}` is an optional parameter to the `page()` method.
@@ -161,7 +165,9 @@ var customerConsents = {
   targeting: true
 };
 
-window.lotame_<lotameClientId>.setConsent(setConsentCb, <lotameConsentClientId>, customerConsents);
+window.lotame_<lotameClientId>.cmd.push(function() {
+  window.lotame_<lotameClientId>.setConsent(setConsentCb, <lotameConsentClientId>, customerConsents);
+});
 ```
 
 The `returnData` object provided to the callback is fully described in [User Consent Guide](lightning-tag/user-consent?id=callback-data).
@@ -175,7 +181,9 @@ function getConsentCb(returnData) {
   console.log('LT.JS: Placeholder for getConsentCb logic');
 }
 
-window.lotame_<lotameClientId>.getConsent(getConsentCb, <lotameConsentClientId>);
+window.lotame_<lotameClientId>.cmd.push(function() {
+  window.lotame_<lotameClientId>.getConsent(getConsentCb, <lotameConsentClientId>);
+});
 ```
 
 The `returnData` object provided to the callback is fully described in [User Consent Guide](lightning-tag/user-consent?id=callback-data).
