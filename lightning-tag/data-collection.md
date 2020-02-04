@@ -46,20 +46,22 @@ The `data` object's parameters are fully described in [Lightning Tag Data Collec
 You can use the Lightning Tag `collect()` method to send data from custom events that cannot be handled through standard Lotame data collection rules at any point after the Lightning Tag has loaded.
 
 ```javascript
-window.lotame_<lotameClientId>.collect({
-  behaviorIds: [1,2,3],
-  behaviors: {
-    int: ['behaviorName', 'behaviorName2'],
-    act: ['behaviorName']
-  },
-  ruleBuilder: {
-    key1: ['value 1a', 'value 1b']
-  },
-  thirdParty: {
-    namespace: 'NAMESPACE',
-    value: 'TPID_VALUE'
-  },
-  sha256email: 'SHA256_VALUE'
+window.lotame_<lotameClientId>.cmd.push(function() {
+  window.lotame_<lotameClientId>.collect({
+    behaviorIds: [1,2,3],
+    behaviors: {
+      int: ['behaviorName', 'behaviorName2'],
+      act: ['behaviorName']
+    },
+    ruleBuilder: {
+      key1: ['value 1a', 'value 1b']
+    },
+    thirdParty: {
+      namespace: 'NAMESPACE',
+      value: 'TPID_VALUE'
+    },
+    sha256email: 'SHA256_VALUE'
+  });
 });
 ```
 
@@ -72,20 +74,22 @@ Lightning Tag provides a `page()` method that you can pass data in on just like 
 An example use-case is a single page app where the URL remains the same, no new page load events occur, but the main content of the window is replaced. `page()` allows your site to note the new pageView and pass data in that corresponds to the new page so targeting can be rerun based on this new information.
 
 ```javascript
-window.lotame_<lotameClientId>.page({
-  behaviorIds: [1,2,3],
-  behaviors: {
-    int: ['behaviorName', 'behaviorName2'],
-    act: ['behaviorName']
-  },
-  ruleBuilder: {
-    key1: ['value 1a', 'value 1b']
-  },
-  thirdParty: {
-    namespace: 'NAMESPACE',
-    value: 'TPID_VALUE'
-  },
-  sha256email: 'SHA256_VALUE'
+window.lotame_<lotameClientId>.cmd.push(function() {
+  window.lotame_<lotameClientId>.page({
+    behaviorIds: [1,2,3],
+    behaviors: {
+      int: ['behaviorName', 'behaviorName2'],
+      act: ['behaviorName']
+    },
+    ruleBuilder: {
+      key1: ['value 1a', 'value 1b']
+    },
+    thirdParty: {
+      namespace: 'NAMESPACE',
+      value: 'TPID_VALUE'
+    },
+    sha256email: 'SHA256_VALUE'
+  });
 });
 ```
 This option takes the same `{data}` object as described in [Lightning Tag Data Collection](lightning-tag/detailed-reference?id=data-object).
@@ -127,7 +131,7 @@ The command queue is recommended when you add the `async` attribute to the Light
 } ();
 <script async src="https://tags.crwdcntrl.net/lt/c/<lotameClientId>/lt.min.js"></script>
 <script>
-  window['lotame_' + lotameClientId].cmd.push(function() {
+  window.lotame_<lotameClientId>.cmd.push(function() {
       window['lotame_' + lotameClientId].collect({
           "behaviorIds": [10005, 10006, 10007],
       });
