@@ -84,6 +84,15 @@ Make sure that the onProfileReady() event is fired before rendering your ads. Th
 
 If you still need assistance, please reach out to Lotame by emailing support@lotame.com.
 
+## What should I do if my site is a Single Page Application?
+
+If your site is a Single Page Application or if you have sections of your site that dynamically refresh their content without reloading the page, you should follow the instructions below to make sure that you correctly capture all data points across all your pages.
+
+First, find the appropriate implementation for your use case under [Implementation Guides](?id=implementation-guides).
+
+Then, when the content of a page has **finished** dynamically refreshing, execute the `page()` call on your lotame namespace as described here: [Page Function](lightning-tag/detailed-reference?id=page). This will perform the full new page handling including running any additional data collection rules that match the updated content.  
+
+
 ## How can I access Lotame's profile id in my browser?
 
 1. In the onProfileReady callback, you can retrieve the latest profile id for the browser by using the `getProfileId()` function as described at [Audience Callback](lightning-tag/detailed-reference?id=audience-callback).
