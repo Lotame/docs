@@ -26,6 +26,8 @@ Lightning Tag will automatically execute any data collection rules that you have
         value: 'TPID_VALUE'
       },
       sha256email: 'SHA256_VALUE'
+    },
+    config: {
     }
   };
 
