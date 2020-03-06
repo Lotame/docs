@@ -30,6 +30,7 @@ The basic version of Lightning Tag will:
       var namespace = window['lotame_' + lotameConfig.clientId] = {};
       namespace.config = lotameConfig;
       namespace.data = lotameTagInput.data || {};
+      namespace.cmd = namespace.cmd || [];
     } ();
   </script>
 

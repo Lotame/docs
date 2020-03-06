@@ -36,13 +36,13 @@ The details of the input `data` and `config` options are below.
 
 The `config` object in the Lotame Lightning Tag input has the following possible parameters:
 
-Parameter Name | Description | Type | Required? | Default
--------------- | ----------- | ---- | :-------: | :-----:
-clientId | Your Lotame Client ID  | `int` | YES | N/A
-onProfileReady | Callback function called once Lotame targeting returns. Discussed further below in the Callback section of this page |`function (profile)` | NO | `{}`
-audienceLocalStorage | Determines whether to write audiences to the browser's `localStorage` and what the name of the key is. Discussed further below in the Local Storage section | `boolean` _**-OR-**_ `string` | NO | `false`
-onTagReady | Callback function called once Lotame Lightning Tag object is loaded and ready to be used. | `function (namespace)` | NO | `{}`
-autoRun | Determines whether Lotame Lightning Tag runs on load. If set to false, your website needs to explicitly call the `page()` method listed on this page to send data and retrieve targeting audiences. | `boolean` | NO | `true`
+Parameter Name | Description | Type | Required? | Recommended? | Default
+-------------- | ----------- | ---- | :-------: | :----------: | :-----:
+clientId | Your Lotame Client ID  | `int` | YES | Always | N/A
+onProfileReady | Callback function called once Lotame targeting returns. Discussed further below in the Callback section of this page |`function (profile)` | NO | Implement when using client-side targeting | `{}`
+audienceLocalStorage | Determines whether to write audiences to the browser's `localStorage` and what the name of the key is. Discussed further below in the Local Storage section | `boolean` _**-OR-**_ `string` | NO | Implement when using client-side targeting | `false`
+onTagReady | Callback function called once Lotame Lightning Tag object is loaded and ready to be used. | `function (namespace)` | NO | In most cases, use the asynchronous command queue instead | `{}`
+autoRun | Determines whether Lotame Lightning Tag runs on load. If set to false, your website needs to explicitly call the `page()` method listed on this page to send data and retrieve targeting audiences. | `boolean` | NO | Set to true unless you have logic that must fire before Lotame's code runs and you have written the logic to call the `page()` method manually | `true`
 
 #### Audience Callback
 
@@ -101,8 +101,6 @@ thirdParty | An identifier to associate with the current browser, typically to e
 sha256email	| The current users email address, first lower-cased, trimmed of whitespace, then hashed using SHA256	|data: {<br/>&nbsp;&nbsp;sha256email: 'lowercase_no_whitespace_sha256_hashed_email'<br/>},
 
 ## Lightning Tag Methods
-
-!> To ensure any of the below methods are available, ensure the `onTagReady` callback has returned
 
 ### collect()
 
