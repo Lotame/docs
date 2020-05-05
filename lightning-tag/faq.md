@@ -140,4 +140,10 @@ Our servers will always return the full set of audiences that your user qualifie
 
 ## How can I prioritize which audiences are returned first?
 
-Provide a list of audiences you would like to return first to your Lotame representative, and they will prioritize them accordingly in the platform.
+Sequence your audiences being passed through an ad call to an ad server, such as Google Ad Manager. This ensures audiences will return in order of ranked priority avoiding exclusion based on the character limitations of the ad server.
+
+Audience priority can be set directly in the platform. When enabling an audience for client-side extraction, simply set the desired priority. Options include:
+1. Priority 1
+2. Priority 2
+3. Priority 3
+4. Not Prioritized (default)
