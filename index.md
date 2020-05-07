@@ -1,7 +1,5 @@
 # Lotame Lightning Tag
 
-!> Please note that the Lotame Lightning Tag is currently in closed beta release. If your company would like to join the beta, please reach out to support@lotame.com.
-
 ## Overview
 
 The Lotame Lightning Tag is a JavaScript tag and API that facilitates all DMP operations on your webpages. This all-in-one solution performs both data collection and audience extraction, along with other important functions described below.
