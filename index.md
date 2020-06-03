@@ -34,7 +34,7 @@ To pass data to your Lotame DMP, review the Lotame [Lightning Tag Data Collectio
 
 ### User Consent Guide
 
-If your company has user consent requirements, refer to the [Lightning Tag User Consent Guide](lightning-tag/data-collection-user-consent.md)
+If your company has user consent requirements, refer to the [Lightning Tag User Consent Guide](lightning-tag/user-consent.md)
 
 ## Detailed Lightning Tag Reference
 
