@@ -20,23 +20,8 @@ window.lotame_<lotameClientId>.cmd.push(function() {
 });
 ```
 
-## Retrieving Consent Signals
-
-To retrieve consent signals previously sent to Lotame, use the `getConsent()` method as shown below. The object passed to the callback method is the same object format as above in `setConsent`.
-
-```javascript
-// Callback that runs when setConsent() completes
-function getConsentCb(returnData) {};
-
-// Call getConsent
-window.lotame_<lotameClientId>.cmd.push(function() {
-  window.lotame_<lotameClientId>.getConsent(getConsentCb, <lotameConsentClientId>);
-});
-```
-
-The full details of these two methods, along with all other functionality of the Lotame Lightning Tag, can be found in the [Lightning Tag Field Reference Guide](lightning-tag/detailed-reference.md).
-
 ## Callback Data
+
 The following table describes the possible responses that could be contained in the `returnData` object provided to your callbacks:
 
 Return State | Return Object Format | Description

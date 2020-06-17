@@ -149,7 +149,7 @@ Audiences will be returned as an array of targeting codes or audience IDs, based
 
 ### setConsent()
 
-The Lotame Ligntning Tag provides a method `setConsent` to submit consent signals to the Lotame Consent API for enforcement within the Lotame DMP. Once you've collected the appropriate consent from your customer within your privacy user experience, submit the appropriate signals as follows:
+The Lotame Lightning Tag provides a method `setConsent` to submit consent signals to the Lotame Consent API for enforcement within the Lotame DMP. Once you've collected the appropriate consent from your customer within your privacy user experience, submit the appropriate signals as follows:
 
 ```javascript
 function setConsentCb(returnData) {
@@ -165,22 +165,6 @@ var customerConsents = {
 
 window.lotame_<lotameClientId>.cmd.push(function() {
   window.lotame_<lotameClientId>.setConsent(setConsentCb, <lotameConsentClientId>, customerConsents);
-});
-```
-
-The `returnData` object provided to the callback is fully described in [User Consent Guide](lightning-tag/user-consent?id=callback-data).
-
-### getConsent()
-
-`getConsent` is almost exactly the same as `setConsent` with the difference being, you do not pass in any consents to set. The return object is in the same format and passed to the callback just like `setConsent`.
-
-```javascript
-function getConsentCb(returnData) {
-  console.log('LT.JS: Placeholder for getConsentCb logic');
-}
-
-window.lotame_<lotameClientId>.cmd.push(function() {
-  window.lotame_<lotameClientId>.getConsent(getConsentCb, <lotameConsentClientId>);
 });
 ```
 
