@@ -16,7 +16,7 @@ Select that row and then look at the response tab. The Response should look some
 
 `{"pid":"7de1b12b97e8ef15f61ccfcbe59368ca","tc":["target_code1","target_code2","all"],"spx":[61,14,81,8,5,115]}`
 
-Whereas the `pid` is the Lotame profile ID and the `tc` containsTargeting Codes (or Audience IDs)
+Whereas the `pid` is the Lotame profile ID and the `tc` contains Targeting Codes (or Audience IDs in the `aud` parameter).
 
 ![Lightning Tag 1st impression response](../images/lt-devtools-validation-bcp2.png)
 
