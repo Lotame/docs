@@ -1,6 +1,7 @@
 * [Lotame Lightning Tag](/)
   * [Pre-Implementation Setup Guide](lightning-tag/implementation-setup-tasks.md)
   * [Basic Implementation Guide](lightning-tag/basic-implementation.md)
+  * [Implementation Validation Guide](lightning-tag/implementation-validations.md)
   * [Google Ad Manager Guide](lightning-tag/implementation-google-ad-manager.md)
   * [User Consent Guide](lightning-tag/user-consent.md)
   * [Data Collection Guide](lightning-tag/data-collection.md)
