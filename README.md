@@ -1,8 +1,6 @@
 # Lotame Lightning Tag
 
-[Click here for the formatted docs](https://lotame.github.io/docs/)
-
-This repository contains the public documentation of the Lotame Lightning Tag.
+Lotame's Lightning Tag documentation has migrated to our new [Lotame Knowledge Base](https://my.lotame.com/). The Lightning Tag can be found here: [Lotame Lightning Tag techical documentation](https://my.lotame.com/t/m1hxv7l/lotame-lightning-tag).
 
 ## Credits
 
